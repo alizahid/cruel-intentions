@@ -27,7 +27,7 @@ type ListProps = Props & {
 
 const List: FunctionComponent<ListProps> = ({ className, roster, title }) => (
   <div className={className}>
-    <h3 className="text-2xl font-semibold text-center text-teal-400">
+    <h3 className="text-4xl font-semibold text-center text-teal-400">
       {title}
     </h3>
 

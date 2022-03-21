@@ -8,7 +8,7 @@ type Props = {
 
 export const Header: FunctionComponent<Props> = ({ guild }) => (
   <section className="text-center">
-    <h2 className="flex items-center justify-center text-xl">
+    <h2 className="flex items-center justify-center text-lg">
       <span className="font-medium text-amber-200">
         {guild.region.toUpperCase()}
       </span>
@@ -22,6 +22,6 @@ export const Header: FunctionComponent<Props> = ({ guild }) => (
       <span className="font-medium text-amber-200">{guild.faction}</span>
     </h2>
 
-    <h1 className="mt-4 text-4xl font-bold text-amber-400">{guild.name}</h1>
+    <h1 className="mt-4 text-6xl font-bold text-amber-400">{guild.name}</h1>
   </section>
 )
