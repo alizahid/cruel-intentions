@@ -15,7 +15,13 @@ type Props = {
 const Home: NextPage<Props> = ({ guild, roster }) => (
   <div className="flex flex-col max-w-5xl px-6 mx-auto my-24">
     <Head>
-      <title>{guild.name}</title>
+      <title>{guild.name}: World of Warcraft guild</title>
+      <meta
+        content={`${guild.name}: World of Warcraft guild on ${
+          guild.realm
+        }, ${guild.region.toUpperCase()}`}
+        name="description"
+      />
     </Head>
 
     <Header guild={guild} />
