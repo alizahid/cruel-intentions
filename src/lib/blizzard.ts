@@ -145,7 +145,7 @@ export class Blizzard {
     const data: Member = {
       class: await this.fetchClass(character_class.id),
       id,
-      image: assets.find(({ key }) => key === 'avatar')?.value ?? '',
+      image: assets.find(({ key }) => key === 'inset')?.value ?? '',
       name,
       race: await this.fetchRace(race.id),
       rank,
