@@ -14,9 +14,9 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
       <Image
         alt={character.name}
         className="rounded-lg bg-amber-900"
-        height={116 / 2}
+        height={116}
         src={character.image}
-        width={230 / 2}
+        width={230}
       />
 
       {character.rank === 0 && (
@@ -36,9 +36,9 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
     </figure>
 
     <div className="mt-6">
-      <div className="text-xl font-medium">{character.name}</div>
+      <div className="text-2xl font-medium">{character.name}</div>
 
-      <div className="font-medium text-gray-400">
+      <div className="mt-2 font-medium text-gray-400">
         {character.race.name} {character.class.name}
       </div>
     </div>
