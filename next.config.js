@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+const config = {
+  images: {
+    domains: ['render.worldofwarcraft.com']
+  },
+  reactStrictMode: true
 }
 
-module.exports = nextConfig
+module.exports = config
