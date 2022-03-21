@@ -12,27 +12,33 @@ type Props = {
   roster: Array<Member>
 }
 
-const Home: NextPage<Props> = ({ guild, roster }) => (
-  <div className="flex flex-col max-w-5xl px-6 mx-auto my-24">
-    <Head>
-      <title>{guild.name}: World of Warcraft guild</title>
-      <meta
-        content={`${guild.name}: World of Warcraft guild on ${
-          guild.realm
-        }, ${guild.region.toUpperCase()}`}
-        name="description"
-      />
-    </Head>
+const Home: NextPage<Props> = ({ guild, roster }) => {
+  const officers = roster.filter(({ rank }) => rank <= 1)
 
-    <Header guild={guild} />
+  return (
+    <div className="flex flex-col max-w-5xl px-6 mx-auto my-24">
+      <Head>
+        <title>{guild.name}: World of Warcraft guild</title>
+        <meta
+          content={`${guild.name}: World of Warcraft guild on ${
+            guild.realm
+          }, ${guild.region.toUpperCase()}`}
+          name="description"
+        />
+      </Head>
 
-    <main className="flex flex-col my-24">
-      <RosterCard roster={roster} />
-    </main>
+      <Header guild={guild} />
 
-    <Footer />
-  </div>
-)
+      <main className="flex flex-col my-24">
+        <RosterCard roster={officers} title="Leadership" />
+
+        <RosterCard className="mt-24" roster={roster} title="Raiders" />
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const props = await Blizzard.fetch(

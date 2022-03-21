@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import { twMerge } from 'tailwind-merge'
 
 import { Member } from '../types'
 import { CharacterCard } from './character'
@@ -7,25 +6,14 @@ import { CharacterCard } from './character'
 type Props = {
   className?: string
   roster: Array<Member>
-}
-
-export const RosterCard: FunctionComponent<Props> = ({ className, roster }) => {
-  const officers = roster.filter(({ rank }) => rank <= 1)
-
-  return (
-    <section className={twMerge(className)}>
-      <List roster={officers} title="Leadership" />
-
-      <List className="mt-12" roster={roster} title="Raiders" />
-    </section>
-  )
-}
-
-type ListProps = Props & {
   title: string
 }
 
-const List: FunctionComponent<ListProps> = ({ className, roster, title }) => (
+export const RosterCard: FunctionComponent<Props> = ({
+  className,
+  roster,
+  title
+}) => (
   <div className={className}>
     <h2 className="text-4xl font-semibold text-center text-teal-400">
       {title}
