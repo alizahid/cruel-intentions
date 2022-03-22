@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const RaidCard: FunctionComponent<Props> = ({ className, raid }) => (
-  <div className={className}>
+  <div className={twMerge('scroll-mt-12', className)} id="progress">
     <h2 className="text-4xl font-semibold text-center text-teal-400">
       {raid.name}
     </h2>

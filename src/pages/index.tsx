@@ -19,7 +19,7 @@ const Home: NextPage<Props> = ({ guild, raid, roster }) => {
   const officers = roster.filter(({ rank }) => rank <= 1)
 
   return (
-    <div className="flex flex-col max-w-5xl px-6 mx-auto my-24">
+    <div className="flex flex-col max-w-5xl px-6 mx-auto mb-24">
       <Head>
         <title>{guild.name}: World of Warcraft guild</title>
         <meta

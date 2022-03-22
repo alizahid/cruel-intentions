@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 
 import { Guild } from '../types'
+import { Link } from './link'
 
 type Props = {
   guild: Guild
@@ -8,7 +9,14 @@ type Props = {
 
 export const Header: FunctionComponent<Props> = ({ guild }) => (
   <section className="text-center">
-    <div className="flex flex-col items-center text-lg lg:flex-row lg:justify-center">
+    <nav className="justify-center hidden lg:flex">
+      <Link id="leadership">Leadership</Link>
+      <Link id="raiders">Raiders</Link>
+      <Link id="progress">Progress</Link>
+      <Link id="apply">Apply</Link>
+    </nav>
+
+    <div className="flex flex-col items-center mt-24 text-lg lg:flex-row lg:justify-center">
       <span className="font-medium text-amber-200">
         {guild.region.toUpperCase()}
       </span>
