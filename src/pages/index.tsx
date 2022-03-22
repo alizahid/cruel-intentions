@@ -14,7 +14,7 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
   const raiders = roster.filter(({ rank }) => rank > 1)
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-6">
       <Head>
         <title>{guild.name}: World of Warcraft guild</title>
         <meta
