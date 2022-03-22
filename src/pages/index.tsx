@@ -3,16 +3,19 @@ import Head from 'next/head'
 
 import { Footer } from '../components/footer'
 import { Header } from '../components/header'
+import { RaidCard } from '../components/raid'
 import { RosterCard } from '../components/roster'
 import { Blizzard } from '../lib/blizzard'
-import { Guild, Member } from '../types'
+import { raider } from '../lib/raider'
+import { Guild, Member, Raid, Region } from '../types'
 
 type Props = {
   guild: Guild
+  raid: Raid
   roster: Array<Member>
 }
 
-const Home: NextPage<Props> = ({ guild, roster }) => {
+const Home: NextPage<Props> = ({ guild, raid, roster }) => {
   const officers = roster.filter(({ rank }) => rank <= 1)
 
   return (
@@ -33,6 +36,8 @@ const Home: NextPage<Props> = ({ guild, roster }) => {
         <RosterCard roster={officers} title="Leadership" />
 
         <RosterCard className="mt-24" roster={roster} title="Raiders" />
+
+        <RaidCard className="mt-24" raid={raid} />
       </main>
 
       <Footer />
@@ -41,15 +46,31 @@ const Home: NextPage<Props> = ({ guild, roster }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const props = await Blizzard.fetch(
-    'eu',
-    'Twisting Nether',
-    'Cruel Intentions',
+  const options = {
+    guild: 'Cruel Intentions',
+    realm: 'Twisting Nether',
+    region: 'eu'
+  }
+
+  const { guild, roster } = await Blizzard.fetch(
+    options.region as Region,
+    options.realm,
+    options.guild,
     2
   )
 
+  const raid = await raider.fetch(
+    options.region as Region,
+    options.realm,
+    options.guild
+  )
+
   return {
-    props
+    props: {
+      guild,
+      raid,
+      roster
+    }
   }
 }
 

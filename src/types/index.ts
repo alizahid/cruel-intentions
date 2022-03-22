@@ -35,3 +35,18 @@ export type PlayableSpec = {
   image: string
   role: string
 }
+
+export type Raid = {
+  slug: string
+  name: string
+  bosses: Array<Boss>
+}
+
+export type Boss = {
+  slug: string
+  name: string
+  image: string
+  normal: boolean
+  heroic: boolean
+  mythic: boolean
+}

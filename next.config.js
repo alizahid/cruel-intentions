@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const config = {
   images: {
-    domains: ['render.worldofwarcraft.com']
+    domains: ['render.worldofwarcraft.com', 'cdnassets.raider.io']
   },
   reactStrictMode: true
 }
