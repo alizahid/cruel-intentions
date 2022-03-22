@@ -9,11 +9,10 @@ type Props = {
 
 export const Header: FunctionComponent<Props> = ({ guild }) => (
   <section className="text-center">
-    <nav className="justify-center hidden lg:flex">
-      <Link id="leadership">Leadership</Link>
+    <nav className="flex justify-center">
       <Link id="raiders">Raiders</Link>
       <Link id="progress">Progress</Link>
-      <Link id="apply">Apply</Link>
+      <Link id="recruitment">Apply</Link>
     </nav>
 
     <div className="flex flex-col items-center mt-24 text-lg lg:flex-row lg:justify-center">

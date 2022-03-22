@@ -1,10 +1,10 @@
 import axios from 'axios'
 import kebabCase from 'lodash/kebabCase'
 
-import { Raid, Region } from '../types'
+import { Options, Raid } from '../types'
 
 class Raider {
-  async fetch(region: Region, realm: string, guild: string): Promise<Raid> {
+  async fetch({ guild, realm, region }: Options): Promise<Raid> {
     const {
       data: { guildRoster }
     } = await axios.get<{

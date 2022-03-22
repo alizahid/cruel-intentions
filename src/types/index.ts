@@ -1,3 +1,9 @@
+export type Options = {
+  guild: string
+  realm: string
+  region: Region
+}
+
 export type Region = 'eu'
 
 export type Guild = {

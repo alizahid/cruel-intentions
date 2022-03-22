@@ -5,6 +5,7 @@ import sortBy from 'lodash/sortBy'
 import {
   Guild,
   Member,
+  Options,
   PlayableClass,
   PlayableRace,
   PlayableSpec,
@@ -20,17 +21,15 @@ export class Blizzard {
   private static maxRank: number
 
   static async fetch(
-    region: Region,
-    realm: string,
-    guild: string,
+    options: Options,
     maxRank: number
   ): Promise<{
     guild: Guild
     roster: Array<Member>
   }> {
-    this.region = region
-    this.realm = realm
-    this.guild = guild
+    this.region = options.region
+    this.realm = options.realm
+    this.guild = options.guild
     this.maxRank = maxRank
 
     this.token = await this.fetchToken()
