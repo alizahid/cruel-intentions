@@ -18,9 +18,7 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
       <Head>
         <title>{guild.name}: World of Warcraft guild</title>
         <meta
-          content={`${guild.name}: World of Warcraft guild on ${
-            guild.realm
-          }, ${guild.region.toUpperCase()}`}
+          content={`${guild.name}: World of Warcraft guild on ${guild.realm}, ${guild.region}`}
           name="description"
         />
       </Head>
@@ -37,7 +35,7 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
         <RecruitmentCard className="mt-24" guild={guild} />
       </main>
 
-      <Footer />
+      <Footer guild={guild} />
     </div>
   )
 }

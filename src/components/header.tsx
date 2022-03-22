@@ -16,9 +16,7 @@ export const Header: FunctionComponent<Props> = ({ guild }) => (
     </nav>
 
     <div className="flex flex-col items-center mt-24 text-lg lg:flex-row lg:justify-center">
-      <span className="font-medium text-amber-200">
-        {guild.region.toUpperCase()}
-      </span>
+      <span className="font-medium text-amber-200">{guild.region}</span>
 
       <span className="hidden mx-3 lg:block">&#215;</span>
 
