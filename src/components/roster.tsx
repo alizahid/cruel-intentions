@@ -22,7 +22,7 @@ export const RosterCard: FunctionComponent<Props> = ({
 
     <div className="grid gap-12 mt-12 lg:grid-cols-2">
       {roster.map((member) => (
-        <CharacterCard character={member} key={member.id} />
+        <CharacterCard character={member} key={member.name} />
       ))}
     </div>
   </div>
