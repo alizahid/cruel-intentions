@@ -2,9 +2,16 @@ export type Options = {
   guild: string
   realm: string
   region: Region
+  maxRank: number
 }
 
-export type Region = 'eu'
+export type Data = {
+  guild: Guild
+  roster: Array<Member>
+  progress: Raid
+}
+
+export type Region = 'EU'
 
 export type Guild = {
   id: number
@@ -15,31 +22,28 @@ export type Guild = {
 }
 
 export type Member = {
-  id: number
   name: string
   image: string
-  race: PlayableRace
-  class: PlayableClass
-  spec: PlayableSpec
+  race: PlayerRace
+  class: PlayerClass
+  spec: PlayerSpec
   rank: number
 }
 
-export type PlayableRace = {
-  id: number
+export type PlayerRace = {
+  slug: string
   name: string
 }
 
-export type PlayableClass = {
-  id: number
+export type PlayerClass = {
+  slug: string
   name: string
-  image: string
 }
 
-export type PlayableSpec = {
-  id: number
+export type PlayerSpec = {
   name: string
-  image: string
   role: string
+  melee: boolean
 }
 
 export type Raid = {

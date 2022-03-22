@@ -23,14 +23,20 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
         <Icon className="absolute text-teal-400 -top-2 -left-2" name="star" />
       )}
 
+      {character.name === 'Wazzuli' && (
+        <Icon className="absolute text-rose-400 -top-2 -left-2" name="heart" />
+      )}
+
       <Icon
         className="absolute -bottom-2 -right-2 text-amber-400"
         name={
-          character.spec.role === 'Tank'
+          character.spec.role === 'tank'
             ? 'shield'
-            : character.spec.role === 'Healer'
+            : character.spec.role === 'healer'
             ? 'hospital'
-            : 'sword'
+            : character.spec.melee
+            ? 'sword'
+            : 'arrow'
         }
       />
     </figure>
@@ -41,7 +47,8 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
       </div>
 
       <div className="mt-2 font-medium text-gray-400">
-        {character.race.name} {character.class.name}
+        {character.race.name} &#215; {character.spec.name}{' '}
+        {character.class.name}
       </div>
     </div>
   </div>

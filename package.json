@@ -1,6 +1,11 @@
 {
   "name": "cruel-intentions",
-  "version": "0.1.0",
+  "author": {
+    "email": "ali.zahid@live.com",
+    "name": "Ali Zahid",
+    "url": "https://alizahid.dev"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,7 +16,6 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
     "next": "12.1.0",
     "react": "17.0.2",

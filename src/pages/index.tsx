@@ -3,22 +3,15 @@ import Head from 'next/head'
 
 import { Footer } from '../components/footer'
 import { Header } from '../components/header'
-import { RaidCard } from '../components/raid'
+import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
 import { RosterCard } from '../components/roster'
-import { Blizzard } from '../lib/blizzard'
 import { raider } from '../lib/raider'
-import { Guild, Member, Options, Raid } from '../types'
+import { Data } from '../types'
 
-type Props = {
-  guild: Guild
-  options: Options
-  raid: Raid
-  roster: Array<Member>
-}
-
-const Home: NextPage<Props> = ({ guild, options, raid, roster }) => {
+const Home: NextPage<Data> = ({ guild, progress, roster }) => {
   const officers = roster.filter(({ rank }) => rank <= 1)
+  const raiders = roster.filter(({ rank }) => rank > 1)
 
   return (
     <div className="flex flex-col max-w-5xl px-6 mx-auto mb-24">
@@ -37,11 +30,11 @@ const Home: NextPage<Props> = ({ guild, options, raid, roster }) => {
       <main className="flex flex-col my-24">
         <RosterCard roster={officers} title="Leadership" />
 
-        <RosterCard className="mt-24" roster={roster} title="Raiders" />
+        <RosterCard className="mt-24" roster={raiders} title="Raiders" />
 
-        <RaidCard className="mt-24" raid={raid} />
+        <ProgressCard className="mt-24" progress={progress} />
 
-        <RecruitmentCard className="mt-24" options={options} />
+        <RecruitmentCard className="mt-24" guild={guild} />
       </main>
 
       <Footer />
@@ -49,24 +42,16 @@ const Home: NextPage<Props> = ({ guild, options, raid, roster }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const options: Options = {
+export const getStaticProps: GetStaticProps<Data> = async () => {
+  const props = await raider.fetch({
     guild: 'Cruel Intentions',
+    maxRank: 2,
     realm: 'Twisting Nether',
-    region: 'eu'
-  }
-
-  const { guild, roster } = await Blizzard.fetch(options, 2)
-
-  const raid = await raider.fetch(options)
+    region: 'EU'
+  })
 
   return {
-    props: {
-      guild,
-      options,
-      raid,
-      roster
-    }
+    props
   }
 }
 

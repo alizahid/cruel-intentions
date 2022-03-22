@@ -1,22 +1,22 @@
 import { FunctionComponent } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Options } from '../types'
+import { Guild } from '../types'
 
 type Props = {
   className?: string
-  options: Options
+  guild: Guild
 }
 
 export const RecruitmentCard: FunctionComponent<Props> = ({
   className,
-  options
+  guild
 }) => (
   <div
     className={twMerge('scroll-mt-12 text-center', className)}
     id="recruitment">
     <h2 className="text-4xl font-semibold text-teal-400">
-      Apply to join {options.guild}
+      Apply to join {guild.name}
     </h2>
 
     <p className="my-6">
