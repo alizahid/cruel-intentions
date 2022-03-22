@@ -3,7 +3,6 @@ import { FunctionComponent } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Raid } from '../types'
-import { Icon } from './icon'
 
 type Props = {
   className?: string
@@ -34,17 +33,13 @@ export const RaidCard: FunctionComponent<Props> = ({ className, raid }) => (
           <div className="flex">
             {(['normal', 'heroic', 'mythic'] as const).map((difficulty) => (
               <div className="flex ml-6 first:ml-0" key={difficulty}>
-                <div className="font-semibold text-gray-400">
-                  {difficulty[0].toUpperCase()}
-                </div>
-
-                <Icon
+                <div
                   className={twMerge(
-                    'ml-3',
+                    'font-medium',
                     boss[difficulty] ? 'text-emerald-400' : 'text-rose-400'
-                  )}
-                  name={boss[difficulty] ? 'success' : 'cancel'}
-                />
+                  )}>
+                  {difficulty}
+                </div>
               </div>
             ))}
           </div>
