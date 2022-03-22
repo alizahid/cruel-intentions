@@ -14,7 +14,7 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
   const raiders = roster.filter(({ rank }) => rank > 1)
 
   return (
-    <div className="flex flex-col max-w-5xl px-6 mx-auto mb-24">
+    <div className="flex flex-col">
       <Head>
         <title>{guild.name}: World of Warcraft guild</title>
         <meta
@@ -26,11 +26,11 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
       <Header guild={guild} />
 
       <main className="flex flex-col my-24">
-        <RosterCard roster={officers} title="Leadership" />
+        <RosterCard className="py-12" roster={officers} title="Leadership" />
 
-        <RosterCard className="mt-24" roster={raiders} title="Raiders" />
+        <RosterCard className="py-12" roster={raiders} title="Raiders" />
 
-        <ProgressCard className="mt-24" progress={progress} />
+        <ProgressCard className="py-12" progress={progress} />
 
         <RecruitmentCard className="mt-24" guild={guild} />
       </main>

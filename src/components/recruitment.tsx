@@ -12,14 +12,12 @@ export const RecruitmentCard: FunctionComponent<Props> = ({
   className,
   guild
 }) => (
-  <div
-    className={twMerge('scroll-mt-12 text-center', className)}
-    id="recruitment">
+  <div className={twMerge('text-center', className)} id="recruitment">
     <h2 className="text-4xl font-semibold text-teal-400">
       Apply to join {guild.name}
     </h2>
 
-    <p className="my-6">
+    <p className="my-6 text-lg">
       Fill out the form and we&#39;ll get back to you or join our Discord and
       talk to an officer.
     </p>

@@ -46,7 +46,7 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
         {character.name}
       </div>
 
-      <div className="mt-2 font-medium text-gray-400">
+      <div className="mt-2 font-medium text-neutral-400">
         {character.race.name} &#215; {character.spec.name}{' '}
         {character.class.name}
       </div>

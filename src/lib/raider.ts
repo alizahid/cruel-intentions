@@ -50,7 +50,7 @@ class Raider {
     }>(
       `https://raider.io/api/guilds/roster?region=${region.toLowerCase()}&realm=${kebabCase(
         realm
-      )}&guild=${guild}`
+      )}&guild=${encodeURIComponent(guild)}`
     )
 
     const {
@@ -70,7 +70,7 @@ class Raider {
     }>(
       `https://raider.io/api/guilds/details?region=${region.toLowerCase()}&realm=${kebabCase(
         realm
-      )}&guild=${guild}`
+      )}&guild=${encodeURIComponent(guild)}`
     )
 
     return {

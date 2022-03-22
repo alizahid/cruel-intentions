@@ -14,12 +14,12 @@ export const ProgressCard: FunctionComponent<Props> = ({
   className,
   progress
 }) => (
-  <div className={twMerge('scroll-mt-12', className)} id="progress">
+  <div className={className} id="progress">
     <h2 className="text-4xl font-semibold text-center text-teal-400">
       {progress.name}
     </h2>
 
-    <div className="grid gap-12 mt-12 lg:grid-cols-3">
+    <div className="grid max-w-5xl gap-12 mx-auto mt-12 lg:grid-cols-3">
       {progress.bosses.map((boss) => (
         <div className="flex flex-col items-center text-center" key={boss.slug}>
           <Image
