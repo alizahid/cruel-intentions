@@ -6,6 +6,7 @@ import { Header } from '../components/header'
 import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
 import { RosterCard } from '../components/roster'
+import { GUILD, MAX_RANK, REALM, REGION } from '../lib/config'
 import { raider } from '../lib/raider'
 import { Data } from '../types'
 
@@ -42,10 +43,10 @@ const Home: NextPage<Data> = ({ guild, progress, roster }) => {
 
 export const getStaticProps: GetStaticProps<Data> = async () => {
   const props = await raider.fetch({
-    guild: 'Cruel Intentions',
-    maxRank: 2,
-    realm: 'Twisting Nether',
-    region: 'EU'
+    guild: GUILD,
+    maxRank: MAX_RANK,
+    realm: REALM,
+    region: REGION
   })
 
   return {
