@@ -3,6 +3,7 @@ import kebabCase from 'lodash/kebabCase'
 import orderBy from 'lodash/orderBy'
 import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 import { GUILD, REALM, REGION } from '../lib/config'
@@ -21,22 +22,27 @@ const Legendaries: NextPage<Props> = ({ characters }) => (
         <div
           className="grid gap-6 p-3 rounded-lg lg:grid-cols-3 bg-neutral-900"
           key={character.name}>
-          <div className="flex items-center">
-            <Image
-              alt={character.name}
-              className="rounded-lg bg-amber-900"
-              height={48}
-              src={character.image}
-              width={48}
-            />
+          <Link
+            href={`https://raider.io/characters/${REGION.toLowerCase()}/${kebabCase(
+              REALM
+            )}/${encodeURIComponent(character.name)}`}>
+            <a className="flex items-center">
+              <Image
+                alt={character.name}
+                className="rounded-lg bg-amber-900"
+                height={48}
+                src={character.image}
+                width={48}
+              />
 
-            <div className="ml-3">
-              <div>{character.name}</div>
-              <div className="text-sm text-neutral-400 tabular-nums">
-                {character.ilvl}
+              <div className="ml-3">
+                <div>{character.name}</div>
+                <div className="text-sm text-neutral-400 tabular-nums">
+                  {character.ilvl}
+                </div>
               </div>
-            </div>
-          </div>
+            </a>
+          </Link>
 
           {(['tier', 'legendaries'] as const).map((key) => (
             <div className="flex items-center justify-end" key={key}>
@@ -118,7 +124,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
           })),
         name,
         tier: Object.entries(items)
-          .filter(([, item]) => !!item?.tier)
+          .filter(([, item]) => item?.tier === 28)
           .map(([slot, { item_level }]) => ({
             ilvl: item_level,
             slot
