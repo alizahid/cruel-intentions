@@ -19,7 +19,7 @@ const Legendaries: NextPage<Props> = ({ characters }) => (
     <section className="grid gap-6 mt-6 lg:grid-cols-2">
       {characters.map((character) => (
         <div
-          className="grid grid-cols-3 p-3 rounded-lg bg-neutral-900"
+          className="grid gap-6 p-3 rounded-lg lg:grid-cols-3 bg-neutral-900"
           key={character.name}>
           <div className="flex items-center">
             <Image
