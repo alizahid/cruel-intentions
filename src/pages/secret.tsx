@@ -14,7 +14,7 @@ type Props = {
 
 const Legendaries: NextPage<Props> = ({ characters }) => (
   <main className="m-6">
-    <h1 className="text-4xl font-bold text-amber-400">Legendaries</h1>
+    <h1 className="text-4xl font-bold text-amber-400">Tier and Legendaries</h1>
 
     <section className="grid gap-6 mt-6 lg:grid-cols-2">
       {characters.map((character) => (
