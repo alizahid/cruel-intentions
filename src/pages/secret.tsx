@@ -40,16 +40,8 @@ const Legendaries: NextPage<Props> = ({ characters }) => (
 
           {(['tier', 'legendaries'] as const).map((key) => (
             <div className="flex items-center justify-end" key={key}>
-              <div
-                className={twMerge(
-                  'font-medium text-2xl tabular-nums',
-                  key === 'tier' ? 'text-[#a335ee]' : 'text-[#ff8000]'
-                )}>
-                {character[key].length}
-              </div>
-
               {character[key].length > 0 && (
-                <div className="flex flex-col ml-6">
+                <div className="flex flex-col">
                   {character[key].map((item) => (
                     <div
                       className="flex items-center justify-end"
@@ -62,6 +54,14 @@ const Legendaries: NextPage<Props> = ({ characters }) => (
                   ))}
                 </div>
               )}
+
+              <div
+                className={twMerge(
+                  'font-medium text-2xl tabular-nums  ml-6',
+                  key === 'tier' ? 'text-[#a335ee]' : 'text-[#ff8000]'
+                )}>
+                {character[key].length}
+              </div>
             </div>
           ))}
         </div>
