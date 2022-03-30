@@ -6,4 +6,8 @@ export type Character = {
     ilvl: number
     slot: string
   }>
+  tier: Array<{
+    ilvl: number
+    slot: string
+  }>
 }
