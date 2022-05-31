@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { z } from 'zod'
 
 import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
@@ -8,6 +9,10 @@ import { GUILD, MAX_RANK, REALM, REGION } from '../lib/config'
 import { raider } from '../lib/raider'
 import { Data } from '../types'
 import { NextPageWithLayout } from '../types/next'
+
+const schema = z.object({})
+
+type Props = z.infer<typeof schema>
 
 const Home: NextPageWithLayout<Data> = ({ guild, progress, roster }) => {
   const officers = roster.filter(({ rank }) => rank <= 1)

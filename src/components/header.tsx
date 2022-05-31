@@ -8,11 +8,11 @@ type Props = {
 }
 
 export const Header: FunctionComponent<Props> = ({ guild }) => (
-  <section className="text-center">
+  <header className="text-center">
     <nav className="flex justify-center">
-      <Link id="raiders">Raiders</Link>
-      <Link id="progress">Progress</Link>
-      <Link id="recruitment">Apply</Link>
+      <Link href="/raiders">Raiders</Link>
+      <Link href="/progress">Progress</Link>
+      <Link href="/recruitment">Apply</Link>
     </nav>
 
     <div className="flex flex-col items-center mt-24 text-lg lg:flex-row lg:justify-center">
@@ -28,5 +28,5 @@ export const Header: FunctionComponent<Props> = ({ guild }) => (
     </div>
 
     <h1 className="mt-4 text-6xl font-bold text-amber-400">{guild.name}</h1>
-  </section>
+  </header>
 )
