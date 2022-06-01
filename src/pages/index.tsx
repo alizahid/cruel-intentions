@@ -4,6 +4,7 @@ import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
 import { RosterCard } from '../components/roster'
 import { MainLayout } from '../layouts/main'
+import { LEADER_RANK } from '../lib/config'
 import { fetchExpansions, fetchProgress, fetchRoster } from '../lib/raider'
 import { NextPageWithLayout } from '../types/next'
 import { Expansion, Member, Progress } from '../types/wow'
@@ -15,8 +16,8 @@ type Props = {
 }
 
 const Home: NextPageWithLayout<Props> = ({ expansions, progress, roster }) => {
-  const officers = roster.filter(({ rank }) => rank <= 1)
-  const raiders = roster.filter(({ rank }) => rank > 1)
+  const officers = roster.filter(({ rank }) => rank <= LEADER_RANK)
+  const raiders = roster.filter(({ rank }) => rank > LEADER_RANK)
 
   return (
     <>
