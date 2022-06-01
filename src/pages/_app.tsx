@@ -1,12 +1,17 @@
 import '../styles/global.scss'
 import 'tailwindcss/tailwind.css'
 
-import { AppProps } from 'next/app'
 import { FunctionComponent } from 'react'
 
-const CruelIntentions: FunctionComponent<AppProps> = ({
+import { AppPropsWithLayout } from '../types/next'
+
+const CruelIntentions: FunctionComponent<AppPropsWithLayout> = ({
   Component,
   pageProps
-}) => <Component {...pageProps} />
+}) => {
+  const getLayout = Component.getLayout || ((page) => page)
+
+  return getLayout(<Component {...pageProps} />)
+}
 
 export default CruelIntentions

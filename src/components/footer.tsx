@@ -2,16 +2,12 @@ import kebabCase from 'lodash/kebabCase'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
 
-import { Guild } from '../types'
+import { GUILD, REALM, REGION } from '../lib/config'
 
-type Props = {
-  guild: Guild
-}
-
-export const Footer: FunctionComponent<Props> = ({ guild }) => {
-  const region = guild.region.toLowerCase()
-  const realm = kebabCase(guild.realm)
-  const slug = kebabCase(guild.name)
+export const Footer: FunctionComponent = () => {
+  const region = REGION.toLowerCase()
+  const realm = kebabCase(REALM)
+  const slug = kebabCase(GUILD)
 
   const links = [
     {
@@ -21,27 +17,27 @@ export const Footer: FunctionComponent<Props> = ({ guild }) => {
     {
       label: 'Raider.io',
       link: `https://raider.io/guilds/${region}/${realm}/${encodeURIComponent(
-        guild.name
+        GUILD
       )}`
     },
     {
       label: 'WoWProgress',
       link: `https://www.wowprogress.com/guild/${region}/${realm}/${encodeURIComponent(
-        guild.name
+        GUILD
       )}`
     }
   ]
 
   return (
-    <footer className="p-12 text-sm text-center text-neutral-400">
+    <footer className="m-12 text-sm text-neutral-400">
       <p>
-        &#169; {new Date().getFullYear()} {guild.name}. All rights reserved.
+        &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
 
       <nav className="flex justify-center mt-6">
         {links.map(({ label, link }) => (
           <Link href={link} key={label}>
-            <a className="ml-3 text-neutral-200 first:ml-0 hover:text-amber-400">
+            <a className="ml-3 text-neutral-200 first:ml-0 hover:text-primary-400">
               {label}
             </a>
           </Link>

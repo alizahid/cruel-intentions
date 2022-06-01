@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
-import { Member } from '../types'
+import { Member } from '../types/wow'
 import { Icon } from './icon'
 
 type Props = {
@@ -9,18 +9,18 @@ type Props = {
 }
 
 export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
-  <div className="flex flex-col items-center text-center">
+  <div className="flex flex-col items-center">
     <figure className="relative" title={character.spec.role}>
       <Image
         alt={character.name}
-        className="rounded-lg bg-amber-900"
+        className="rounded-lg bg-primary-900"
         height={116}
         src={character.image}
         width={230}
       />
 
       {character.rank === 0 && (
-        <Icon className="absolute text-teal-400 -top-2 -left-2" name="star" />
+        <Icon className="absolute text-accent-400 -top-2 -left-2" name="star" />
       )}
 
       {character.name === 'Wazzuli' && (
@@ -28,7 +28,7 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
       )}
 
       <Icon
-        className="absolute -bottom-2 -right-2 text-amber-400"
+        className="absolute -bottom-2 -right-2 text-primary-400"
         name={
           character.spec.role === 'tank'
             ? 'shield'
@@ -42,7 +42,7 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
     </figure>
 
     <div className="mt-6">
-      <div className="text-2xl font-medium text-amber-400">
+      <div className="text-2xl font-medium text-primary-400">
         {character.name}
       </div>
 

@@ -1,56 +1,54 @@
-import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
+import { GetStaticProps } from 'next'
 
-import { Footer } from '../components/footer'
-import { Header } from '../components/header'
 import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
 import { RosterCard } from '../components/roster'
-import { GUILD, MAX_RANK, REALM, REGION } from '../lib/config'
-import { raider } from '../lib/raider'
-import { Data } from '../types'
+import { MainLayout } from '../layouts/main'
+import { LEADER_RANK } from '../lib/config'
+import { fetchExpansions, fetchProgress, fetchRoster } from '../lib/raider'
+import { NextPageWithLayout } from '../types/next'
+import { Expansion, Member, Progress } from '../types/wow'
 
-const Home: NextPage<Data> = ({ guild, progress, roster }) => {
-  const officers = roster.filter(({ rank }) => rank <= 1)
-  const raiders = roster.filter(({ rank }) => rank > 1)
+type Props = {
+  expansions: Array<Expansion>
+  progress: Array<Progress>
+  roster: Array<Member>
+}
+
+const Home: NextPageWithLayout<Props> = ({ expansions, progress, roster }) => {
+  const officers = roster.filter(({ rank }) => rank <= LEADER_RANK)
+  const raiders = roster.filter(({ rank }) => rank > LEADER_RANK)
 
   return (
-    <div className="flex flex-col px-6">
-      <Head>
-        <title>{guild.name}: World of Warcraft guild</title>
-        <meta
-          content={`${guild.name}: World of Warcraft guild on ${guild.realm}, ${guild.region}`}
-          name="description"
-        />
-      </Head>
+    <>
+      <RosterCard roster={officers} title="Leadership" />
 
-      <Header guild={guild} />
+      <RosterCard className="mt-12" roster={raiders} title="Raiders" />
 
-      <main className="flex flex-col my-24">
-        <RosterCard className="py-12" roster={officers} title="Leadership" />
+      <ProgressCard
+        className="mt-24"
+        expansions={expansions}
+        progress={progress}
+      />
 
-        <RosterCard className="py-12" roster={raiders} title="Raiders" />
-
-        <ProgressCard className="py-12" progress={progress} />
-
-        <RecruitmentCard className="mt-24" guild={guild} />
-      </main>
-
-      <Footer guild={guild} />
-    </div>
+      <RecruitmentCard className="mt-24" />
+    </>
   )
 }
 
-export const getStaticProps: GetStaticProps<Data> = async () => {
-  const props = await raider.fetch({
-    guild: GUILD,
-    maxRank: MAX_RANK,
-    realm: REALM,
-    region: REGION
-  })
+Home.getLayout = (page) => <MainLayout>{page}</MainLayout>
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const expansions = await fetchExpansions()
+  const progress = await fetchProgress(expansions)
+  const roster = await fetchRoster()
 
   return {
-    props
+    props: {
+      expansions,
+      progress,
+      roster
+    }
   }
 }
 
