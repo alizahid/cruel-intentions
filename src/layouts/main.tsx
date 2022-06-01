@@ -3,7 +3,7 @@ import { FunctionComponent, ReactNode } from 'react'
 
 import { Footer } from '../components/footer'
 import { Header } from '../components/header'
-import { GUILD, REALM, RECRUITMENT } from '../lib/config'
+import { GUILD, REALM, RECRUITMENT, REGION } from '../lib/config'
 
 type Props = {
   children: ReactNode
@@ -14,7 +14,7 @@ export const MainLayout: FunctionComponent<Props> = ({ children }) => (
     <Head>
       <title>{GUILD}: World of Warcraft guild</title>
       <meta
-        content={`${GUILD}: World of Warcraft guild on ${REALM}, ${REALM.toUpperCase()}`}
+        content={`${GUILD}: World of Warcraft guild on ${REALM}, ${REGION.toUpperCase()}`}
         name="description"
       />
     </Head>
