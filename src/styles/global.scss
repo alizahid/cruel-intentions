@@ -5,9 +5,13 @@
 // global
 
 ::selection {
-  @apply bg-amber-800 text-white;
+  @apply bg-primary-800 text-white;
 }
 
 body {
   @apply bg-black font-body text-white cursor-default;
+}
+
+a {
+  @apply text-primary-600 transition-colors;
 }

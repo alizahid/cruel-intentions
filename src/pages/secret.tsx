@@ -15,12 +15,14 @@ type Props = {
 
 const Legendaries: NextPage<Props> = ({ characters }) => (
   <main className="m-6">
-    <h1 className="text-4xl font-bold text-amber-400">Tier and Legendaries</h1>
+    <h1 className="text-4xl font-bold text-primary-400">
+      Tier and Legendaries
+    </h1>
 
-    <section className="grid gap-6 mt-6 lg:grid-cols-2">
+    <section className="mt-6 grid gap-6 lg:grid-cols-2">
       {characters.map((character) => (
         <div
-          className="grid gap-6 p-3 rounded-lg lg:grid-cols-3 bg-neutral-900"
+          className="p-3 rounded-lg grid gap-6 lg:grid-cols-3 bg-neutral-900"
           key={character.name}>
           <Link
             href={`https://raider.io/characters/${REGION.toLowerCase()}/${kebabCase(
@@ -29,7 +31,7 @@ const Legendaries: NextPage<Props> = ({ characters }) => (
             <a className="flex items-center">
               <Image
                 alt={character.name}
-                className="rounded-lg bg-amber-900"
+                className="rounded-lg bg-primary-900"
                 height={48}
                 src={character.image}
                 width={48}

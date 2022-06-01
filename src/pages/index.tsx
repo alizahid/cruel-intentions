@@ -4,42 +4,50 @@ import { ProgressCard } from '../components/progress'
 import { RecruitmentCard } from '../components/recruitment'
 import { RosterCard } from '../components/roster'
 import { MainLayout } from '../layouts/main'
-import { GUILD, MAX_RANK, REALM, REGION } from '../lib/config'
-import { raider } from '../lib/raider'
-import { Data } from '../types'
+import { fetchExpansions, fetchProgress, fetchRoster } from '../lib/raider'
 import { NextPageWithLayout } from '../types/next'
+import { Expansion, Member, Progress } from '../types/wow'
 
-const Home: NextPageWithLayout<Data> = ({ guild, progress, roster }) => {
+type Props = {
+  expansions: Array<Expansion>
+  progress: Array<Progress>
+  roster: Array<Member>
+}
+
+const Home: NextPageWithLayout<Props> = ({ expansions, progress, roster }) => {
   const officers = roster.filter(({ rank }) => rank <= 1)
   const raiders = roster.filter(({ rank }) => rank > 1)
 
   return (
     <>
-      <RosterCard className="py-12" roster={officers} title="Leadership" />
+      <RosterCard roster={officers} title="Leadership" />
 
-      <RosterCard className="py-12" roster={raiders} title="Raiders" />
+      <RosterCard className="mt-12" roster={raiders} title="Raiders" />
 
-      <ProgressCard className="py-12" progress={progress} />
+      <ProgressCard
+        className="mt-24"
+        expansions={expansions}
+        progress={progress}
+      />
 
-      <RecruitmentCard className="mt-24" guild={guild} />
+      <RecruitmentCard className="mt-24" />
     </>
   )
 }
 
-Home.getLayout = (page) => (
-  <MainLayout guild={page.props.guild}>{page}</MainLayout>
-)
+Home.getLayout = (page) => <MainLayout>{page}</MainLayout>
 
-export const getStaticProps: GetStaticProps<Data> = async () => {
-  const props = await raider.fetch({
-    guild: GUILD,
-    maxRank: MAX_RANK,
-    realm: REALM,
-    region: REGION
-  })
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const expansions = await fetchExpansions()
+  const progress = await fetchProgress(expansions)
+  const roster = await fetchRoster()
 
   return {
-    props
+    props: {
+      expansions,
+      progress,
+      roster
+    }
   }
 }
 
