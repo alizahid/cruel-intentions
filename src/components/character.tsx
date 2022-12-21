@@ -16,6 +16,7 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
         className="rounded-lg bg-primary-900"
         height={116}
         src={character.image}
+        unoptimized
         width={230}
       />
 

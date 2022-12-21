@@ -36,10 +36,11 @@ export const Footer: FunctionComponent = () => {
 
       <nav className="flex justify-center mt-6">
         {links.map(({ label, link }) => (
-          <Link href={link} key={label}>
-            <a className="ml-3 text-neutral-200 first:ml-0 hover:text-primary-400">
-              {label}
-            </a>
+          <Link
+            className="ml-3 text-neutral-200 first:ml-0 hover:text-primary-400"
+            href={link}
+            key={label}>
+            {label}
           </Link>
         ))}
       </nav>

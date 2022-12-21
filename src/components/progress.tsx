@@ -46,6 +46,7 @@ export const ProgressCard: FunctionComponent<Props> = ({
                         className="rounded-lg bg-amber-600"
                         height={32}
                         src={`https://cdnassets.raider.io/images/${raid.slug}/bossicons/${boss.slug}.jpg`}
+                        unoptimized
                         width={32}
                       />
 

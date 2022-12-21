@@ -12,7 +12,7 @@ type Props = {
 export const MainLayout: FunctionComponent<Props> = ({ children }) => (
   <div className="flex flex-col text-center">
     <Head>
-      <title>{GUILD}: World of Warcraft guild</title>
+      <title>{`${GUILD}: World of Warcraft guild`}</title>
       <meta
         content={`${GUILD}: World of Warcraft guild on ${REALM}, ${REGION.toUpperCase()}`}
         name="description"

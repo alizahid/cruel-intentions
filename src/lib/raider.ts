@@ -10,9 +10,13 @@ import { GUILD, MAX_RANK, REALM, REGION } from './config'
 export const fetchExpansions = async (): Promise<Array<Expansion>> => {
   const expansions = [
     {
-      id: 8,
-      name: 'Shadowlands'
+      id: 9,
+      name: 'Dragonflight'
     }
+    // {
+    //   id: 8,
+    //   name: 'Shadowlands'
+    // },
     // {
     //   id: 7,
     //   name: 'Battle for Azeroth'

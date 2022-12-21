@@ -16,7 +16,7 @@ const handler: NextApiHandler<Data> = async (req, res) => {
   }
 
   try {
-    await res.unstable_revalidate('/')
+    await res.revalidate('/')
 
     res.json({
       status: 'ok'

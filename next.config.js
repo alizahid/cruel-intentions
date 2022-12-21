@@ -9,9 +9,6 @@ const config = {
     RECRUITMENT: process.env.RECRUITMENT,
     REGION: process.env.REGION
   },
-  images: {
-    domains: ['render.worldofwarcraft.com', 'cdnassets.raider.io']
-  },
   reactStrictMode: true
 }
 
