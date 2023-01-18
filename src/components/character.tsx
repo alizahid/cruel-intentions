@@ -48,11 +48,9 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
       </div>
 
       <div className="mt-2 font-medium text-neutral-400">
-        {character.race.name}
-      </div>
-
-      <div className="mt-2 font-medium text-neutral-400">
-        {character.spec.name} {character.class.name}
+        {[character.race.name, character.class.name, character.spec.name].join(
+          ' · '
+        )}
       </div>
     </div>
   </div>
