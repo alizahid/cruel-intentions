@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FunctionComponent } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -40,15 +41,36 @@ export const RecruitmentCard: FunctionComponent<Props> = ({ className }) => (
     <p className="my-6 text-lg">Or talk to one of our officers on Discord.</p>
 
     <div className="flex flex-wrap justify-center gap-3">
-      {['Asphyxiation#5885', 'mildpanda#5382', 'Moshira#7226'].map(
-        (officer) => (
-          <div
-            className="p-3 font-semibold leading-none text-black rounded-lg bg-accent-400"
-            key={officer}>
-            {officer}
-          </div>
-        )
-      )}
+      {[
+        {
+          id: '241549823168348160',
+          username: 'Asphyxiation#5885'
+        },
+        {
+          id: '233003991192174592',
+          username: 'mildpanda#5382'
+        },
+        {
+          id: '227015787121082370',
+          username: 'Moshira#7226'
+        },
+        {
+          id: '629026848671662105',
+          username: 'Quteapi#2921'
+        },
+        {
+          id: '191584535924703243',
+          username: 'Olavur#0147'
+        }
+      ].map(({ id, username }) => (
+        <Link
+          className="p-3 font-semibold leading-none text-black rounded-lg bg-accent-400"
+          href={`https://discordapp.com/users/${id}`}
+          key={id}
+          target="_blank">
+          {username}
+        </Link>
+      ))}
     </div>
   </div>
 )
