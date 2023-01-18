@@ -132,7 +132,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
           })),
         name,
         tier: Object.entries(items)
-          .filter(([, item]) => item?.tier === 28)
+          .filter(([, item]) => !!item?.tier)
           .map(([slot, { item_level }]) => ({
             ilvl: item_level,
             slot
