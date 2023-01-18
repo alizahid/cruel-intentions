@@ -30,7 +30,7 @@ export const RecruitmentCard: FunctionComponent<Props> = ({ className }) => (
     <div className="flex justify-center">
       <a
         className="p-3 font-semibold leading-none text-black transition-colors rounded-lg hover:bg-primary-300 active:bg-primary-500 bg-primary-400"
-        href="https://shorturl.at/jzFS9"
+        href="https://forms.gle/vcx78QHhUDUtjiP99"
         rel="noreferrer"
         target="_blank">
         Form
