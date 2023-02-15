@@ -55,10 +55,6 @@ export const RecruitmentCard: FunctionComponent<Props> = ({ className }) => (
           username: 'Moshira#7226'
         },
         {
-          id: '629026848671662105',
-          username: 'Quteapi#2921'
-        },
-        {
           id: '191584535924703243',
           username: 'Olavur#0147'
         }
