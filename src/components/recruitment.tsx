@@ -57,6 +57,14 @@ export const RecruitmentCard: FunctionComponent<Props> = ({ className }) => (
         {
           id: '191584535924703243',
           username: 'Olavur#0147'
+        },
+        {
+          id: '987785524007817266',
+          username: 'Oesta#8653'
+        },
+        {
+          id: '252462053212553227',
+          username: 'Rooz#5737'
         }
       ].map(({ id, username }) => (
         <Link
