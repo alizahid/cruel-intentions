@@ -24,10 +24,6 @@ export const CharacterCard: FunctionComponent<Props> = ({ character }) => (
         <Icon className="absolute text-accent-400 -top-2 -left-2" name="star" />
       )}
 
-      {character.name === 'Wazzuli' && (
-        <Icon className="absolute text-rose-400 -top-2 -left-2" name="heart" />
-      )}
-
       <Icon
         className="absolute -bottom-2 -right-2 text-primary-400"
         name={

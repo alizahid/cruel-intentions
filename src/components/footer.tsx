@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FunctionComponent } from 'react'
 
 import { GUILD, REALM, REGION } from '../lib/config'
+import { Icon } from './icon'
 
 export const Footer: FunctionComponent = () => {
   const region = REGION.toLowerCase()
@@ -34,16 +35,22 @@ export const Footer: FunctionComponent = () => {
         &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
 
-      <nav className="flex justify-center mt-6">
-        {links.map(({ label, link }) => (
+      <nav className="flex gap-3 justify-center mt-6">
+        {links.map(({ label, link }, index) => (
           <Link
-            className="ml-3 text-neutral-200 first:ml-0 hover:text-primary-400"
+            className="text-neutral-200 hover:text-primary-400"
             href={link}
-            key={label}>
+            key={index}>
             {label}
           </Link>
         ))}
       </nav>
+
+      <Link
+        className="flex text-neutral-200 hover:text-primary-400 gap-1 items-center justify-center mt-6"
+        href="https://alizahid.dev">
+        Made with <Icon className="text-red-600 h-5 w-5" name="heart" />
+      </Link>
     </footer>
   )
 }
