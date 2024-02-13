@@ -2,27 +2,28 @@ export type Expansion = {
   id: number
   name: string
   raids: Array<{
-    name: string
-    slug: string
     bosses: Array<{
+      image: string
       name: string
       slug: string
     }>
+    name: string
+    slug: string
   }>
 }
 
 export type Member = {
-  image: string
-  name: string
-  rank: number
   class: {
     name: string
     slug: string
   }
+  image: string
+  name: string
   race: {
     name: string
     slug: string
   }
+  rank: number
   spec: {
     melee: boolean
     name: string

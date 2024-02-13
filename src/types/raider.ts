@@ -1,37 +1,36 @@
-import { RaidDifficulty, Region } from './index'
+import { type RaidDifficulty, type Region } from './index'
 
 export type Raids = {
   raids: Array<{
-    name: string
-    slug: string
-    starts: Record<Lowercase<Region>, string>
     encounters: Array<{
       name: string
       slug: string
     }>
+    icon: string
+    name: string
+    slug: string
+    starts: Record<Lowercase<Region>, string>
   }>
 }
 
 export type GuildRoster = {
   guildRoster: {
     raid: {
-      name: string
-      slug: string
       encounters: Array<{
         iconUrl: string
         name: string
         slug: string
       }>
+      name: string
+      slug: string
     }
     roster: Array<{
-      rank: number
       character: {
-        name: string
-        thumbnail: string
         class: {
           name: string
           slug: string
         }
+        name: string
         race: {
           name: string
           slug: string
@@ -42,7 +41,9 @@ export type GuildRoster = {
           role: string
           slug: string
         }
+        thumbnail: string
       }
+      rank: number
     }>
   }
 }
@@ -50,13 +51,13 @@ export type GuildRoster = {
 export type GuildDetails = {
   guildDetails: {
     raidProgress: Array<{
-      raid: string
       encountersDefeated: Record<
         RaidDifficulty,
         Array<{
           slug: string
         }>
       >
+      raid: string
     }>
   }
 }

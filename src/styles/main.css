@@ -1,0 +1,25 @@
+/* tailwind */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* global */
+
+::selection {
+  @apply bg-primary-600/50;
+}
+
+body {
+  @apply cursor-default bg-black font-body text-white;
+}
+
+a {
+  @apply text-primary-600 transition-colors;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-display;
+}

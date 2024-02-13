@@ -1,11 +1,11 @@
 import kebabCase from 'lodash/kebabCase'
 import Link from 'next/link'
-import { FunctionComponent } from 'react'
 
-import { GUILD, REALM, REGION } from '../lib/config'
+import { GUILD, REALM, REGION } from '~/lib/config'
+
 import { Icon } from './icon'
 
-export const Footer: FunctionComponent = () => {
+export function Footer() {
   const region = REGION.toLowerCase()
   const realm = kebabCase(REALM)
   const slug = kebabCase(GUILD)
@@ -13,20 +13,20 @@ export const Footer: FunctionComponent = () => {
   const links = [
     {
       label: 'Armory',
-      link: `https://worldofwarcraft.com/en-us/guild/${region}/${realm}/${slug}`
+      link: `https://worldofwarcraft.com/en-us/guild/${region}/${realm}/${slug}`,
     },
     {
       label: 'Raider.io',
       link: `https://raider.io/guilds/${region}/${realm}/${encodeURIComponent(
-        GUILD
-      )}`
+        GUILD,
+      )}`,
     },
     {
       label: 'WoWProgress',
       link: `https://www.wowprogress.com/guild/${region}/${realm}/${encodeURIComponent(
-        GUILD
-      )}`
-    }
+        GUILD,
+      )}`,
+    },
   ]
 
   return (
@@ -35,21 +35,21 @@ export const Footer: FunctionComponent = () => {
         &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
 
-      <nav className="flex gap-3 justify-center mt-6">
-        {links.map(({ label, link }, index) => (
+      <nav className="mt-6 flex justify-center gap-3">
+        {links.map(({ label, link }) => (
           <Link
             className="text-neutral-200 hover:text-primary-400"
             href={link}
-            key={index}>
+            key={link}>
             {label}
           </Link>
         ))}
       </nav>
 
       <Link
-        className="flex text-neutral-200 hover:text-primary-400 gap-1 items-center justify-center mt-6"
+        className="mt-6 flex items-center justify-center gap-1 text-neutral-200 hover:text-primary-400"
         href="https://alizahid.dev">
-        Made with <Icon className="text-red-600 h-5 w-5" name="heart" />
+        Made with <Icon className="h-5 w-5 text-red-600" name="heart" />
       </Link>
     </footer>
   )

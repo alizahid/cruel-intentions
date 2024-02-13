@@ -1,39 +1,27 @@
-import kebabCase from 'lodash/kebabCase'
-import orderBy from 'lodash/orderBy'
-import sortBy from 'lodash/sortBy'
+import { kebabCase, orderBy, sortBy } from 'lodash'
 
-import { Region } from '../types'
-import { GuildDetails, GuildRoster, Raids } from '../types/raider'
-import { Expansion, Member, Progress } from '../types/wow'
+import { type Region } from '~/types'
+import { type GuildDetails, type GuildRoster, type Raids } from '~/types/raider'
+import { type Expansion, type Member, type Progress } from '~/types/wow'
+
 import { GUILD, MAX_RANK, REALM, REGION } from './config'
+import { getBossIcon } from './icons'
 
 export const fetchExpansions = async (): Promise<Array<Expansion>> => {
   const expansions = [
     {
       id: 9,
-      name: 'Dragonflight'
-    }
-    // {
-    //   id: 8,
-    //   name: 'Shadowlands'
-    // },
-    // {
-    //   id: 7,
-    //   name: 'Battle for Azeroth'
-    // },
-    // {
-    //   id: 6,
-    //   name: 'Legion'
-    // }
+      name: 'Dragonflight',
+    },
   ]
 
   const raids = await Promise.all(
     expansions.map(async ({ id, name }) => {
       const response = await fetch(
-        `https://raider.io/api/v1/raiding/static-data?expansion_id=${id}`
+        `https://raider.io/api/v1/raiding/static-data?expansion_id=${id}`,
       )
 
-      const json: Raids = await response.json()
+      const json = (await response.json()) as Raids
 
       return {
         id,
@@ -41,17 +29,18 @@ export const fetchExpansions = async (): Promise<Array<Expansion>> => {
         raids: orderBy(
           json.raids,
           (raid) => raid.starts[REGION.toLowerCase() as Lowercase<Region>],
-          'desc'
+          'desc',
         ).map((raid) => ({
-          bosses: raid.encounters.map(({ name, slug }) => ({
-            name,
-            slug
+          bosses: raid.encounters.map((boss) => ({
+            image: getBossIcon(boss.slug),
+            name: boss.name,
+            slug: boss.slug,
           })),
           name: raid.name,
-          slug: raid.slug
-        }))
+          slug: raid.slug,
+        })),
       }
-    })
+    }),
   )
 
   return raids
@@ -60,11 +49,11 @@ export const fetchExpansions = async (): Promise<Array<Expansion>> => {
 export const fetchRoster = async (): Promise<Array<Member>> => {
   const response = await fetch(
     `https://raider.io/api/guilds/roster?region=${REGION.toLowerCase()}&realm=${kebabCase(
-      REALM
-    )}&guild=${encodeURIComponent(GUILD)}`
+      REALM,
+    )}&guild=${encodeURIComponent(GUILD)}`,
   )
 
-  const json: GuildRoster = await response.json()
+  const json = (await response.json()) as GuildRoster
 
   return sortBy(
     json.guildRoster.roster
@@ -72,58 +61,64 @@ export const fetchRoster = async (): Promise<Array<Member>> => {
       .map(({ character, rank }) => ({
         class: {
           name: character.class.name,
-          slug: character.class.name
+          slug: character.class.name,
         },
         image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail.replace(
           'avatar',
-          'inset'
+          'inset',
         )}`,
         name: character.name,
         race: {
           name: character.race.name,
-          slug: character.race.slug
+          slug: character.race.slug,
         },
         rank,
         spec: {
           melee: character.spec.is_melee,
           name: character.spec.name,
-          role: character.spec.role
-        }
+          role: character.spec.role,
+        },
       })),
-    ['rank', 'name']
+    ['rank', 'name'],
   )
 }
 
 export const fetchProgress = async (
-  expansions: Array<Expansion>
+  expansions: Array<Expansion>,
 ): Promise<Array<Progress>> => {
   const response = await fetch(
     `https://raider.io/api/guilds/details?region=${REGION.toLowerCase()}&realm=${kebabCase(
-      REALM
-    )}&guild=${encodeURIComponent(GUILD)}`
+      REALM,
+    )}&guild=${encodeURIComponent(GUILD)}`,
   )
 
-  const json: GuildDetails = await response.json()
+  const json = (await response.json()) as GuildDetails
 
   return expansions
     .flatMap(({ raids }) => raids)
     .flatMap((raid) => {
       const data = json.guildDetails.raidProgress.find(
-        (item) => item.raid === raid.slug
+        (item) => item.raid === raid.slug,
       )
 
       return raid.bosses.map(({ slug }) => ({
         boss: slug,
-        heroic: !!data?.encountersDefeated.heroic.find(
-          (difficulty) => difficulty.slug === slug
+        heroic: Boolean(
+          data?.encountersDefeated.heroic.find(
+            (difficulty) => difficulty.slug === slug,
+          ),
         ),
-        mythic: !!data?.encountersDefeated.mythic.find(
-          (difficulty) => difficulty.slug === slug
+        mythic: Boolean(
+          data?.encountersDefeated.mythic.find(
+            (difficulty) => difficulty.slug === slug,
+          ),
         ),
-        normal: !!data?.encountersDefeated.normal.find(
-          (difficulty) => difficulty.slug === slug
+        normal: Boolean(
+          data?.encountersDefeated.normal.find(
+            (difficulty) => difficulty.slug === slug,
+          ),
         ),
-        raid: raid.slug
+        raid: raid.slug,
       }))
     })
 }

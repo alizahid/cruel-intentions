@@ -7,9 +7,9 @@ const config = {
     MAX_RANK: process.env.MAX_RANK,
     REALM: process.env.REALM,
     RECRUITMENT: process.env.RECRUITMENT,
-    REGION: process.env.REGION
+    REGION: process.env.REGION,
   },
-  reactStrictMode: true
+  reactStrictMode: true,
 }
 
 module.exports = config
