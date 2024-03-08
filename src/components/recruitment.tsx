@@ -60,6 +60,10 @@ export function RecruitmentCard({ className }: Props) {
             id: '333521447945502731',
             username: 'Galvanuts',
           },
+          {
+            id: '265034938301022208',
+            username: 'Jake02#0001',
+          },
         ].map(({ id, username }) => (
           <Link
             className="rounded-lg bg-accent-400 p-3 pb-2.5 font-semibold leading-none text-black"
