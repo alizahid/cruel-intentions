@@ -33,7 +33,9 @@ export const fetchExpansions = async (): Promise<Array<Expansion>> => {
         ).map((raid) => ({
           bosses: raid.encounters.map((boss) => ({
             image: getBossIcon(boss.slug),
-            name: boss.name,
+            name: boss.name.startsWith('Awakened')
+              ? boss.name.slice(9)
+              : boss.name,
             slug: boss.slug,
           })),
           name: raid.name,

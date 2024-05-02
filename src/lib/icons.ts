@@ -1,6 +1,8 @@
 export function getBossIcon(slug: string) {
+  const fixed = slug.startsWith('awakened') ? slug.slice(9) : slug
+
   const icon =
-    bossIcons[slug] ?? 'achievement_raid_revendrethraid_siredenathrius'
+    bossIcons[fixed] ?? 'achievement_raid_revendrethraid_siredenathrius'
 
   return `https://cdn.raiderio.net/images/wow/icons/large/${icon}.jpg`
 }
