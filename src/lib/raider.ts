@@ -18,7 +18,7 @@ export const fetchExpansions = async (): Promise<Array<Expansion>> => {
   const raids = await Promise.all(
     expansions.map(async ({ id, name }) => {
       const response = await fetch(
-        `https://raider.io/api/v1/raiding/static-data?expansion_id=${id}`,
+        `https://raider.io/api/v1/raiding/static-data?expansion_id=${String(id)}`,
       )
 
       const json = (await response.json()) as Raids
