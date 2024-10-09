@@ -50,7 +50,7 @@ export function RecruitmentCard({ className }: Props) {
           },
           {
             id: '987785524007817266',
-            username: 'Goeslock',
+            username: 'Oesta',
           },
           {
             id: '227015787121082370',
@@ -59,10 +59,6 @@ export function RecruitmentCard({ className }: Props) {
           {
             id: '333521447945502731',
             username: 'Galvanuts',
-          },
-          {
-            id: '265034938301022208',
-            username: '_jake02',
           },
         ].map(({ id, username }) => (
           <Link
