@@ -11,7 +11,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint --fix",
-    "prepare": "husky install",
+    "prepare": "husky",
     "start": "next start"
   },
   "lint-staged": {
