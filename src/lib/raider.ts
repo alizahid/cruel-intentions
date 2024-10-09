@@ -10,8 +10,8 @@ import { getBossIcon } from './icons'
 export const fetchExpansions = async (): Promise<Array<Expansion>> => {
   const expansions = [
     {
-      id: 9,
-      name: 'Dragonflight',
+      id: 10,
+      name: 'The War Within',
     },
   ]
 
