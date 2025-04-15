@@ -27,7 +27,7 @@ export const fetchExpansions = async (): Promise<Array<Expansion>> => {
         id,
         name,
         raids: orderBy(
-          json.raids,
+          json.raids.filter((raid) => raid.slug !== 'blackrock-depths'),
           (raid) => raid.starts[REGION.toLowerCase() as Lowercase<Region>],
           'desc',
         ).map((raid) => ({
