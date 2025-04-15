@@ -48,7 +48,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                         />
 
                         <div className="ml-3 flex-1 text-left font-semibold">
-                          {boss.slug}
+                          {boss.name}
                         </div>
 
                         {(['normal', 'heroic', 'mythic'] as const).map(
