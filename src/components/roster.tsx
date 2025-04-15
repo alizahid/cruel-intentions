@@ -13,7 +13,7 @@ type Props = {
 export function RosterCard({ className, roster, title }: Props) {
   return (
     <div className={twMerge('scroll-m-12', className)} id={title.toLowerCase()}>
-      <h2 className="text-4xl font-semibold text-accent-400">{title}</h2>
+      <h2 className="text-accent-400 text-4xl font-semibold">{title}</h2>
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-3">
         {roster.map((member) => (

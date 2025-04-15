@@ -14,18 +14,18 @@ type Props = {
 export function ProgressCard({ className, expansions, progress }: Props) {
   return (
     <div className={twMerge('mx-6 scroll-m-12', className)} id="progress">
-      <h2 className="text-4xl font-semibold text-accent-400">Progression</h2>
+      <h2 className="text-accent-400 text-4xl font-semibold">Progression</h2>
 
       {expansions.map((expansion) => (
         <div className="mt-12" key={expansion.id}>
-          <h3 className="text-3xl font-semibold text-primary-400">
+          <h3 className="text-primary-400 text-3xl font-semibold">
             {expansion.name}
           </h3>
 
-          <div className="mt-12 flex flex-wrap gap-12">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-2">
             {expansion.raids.map((raid) => (
-              <div className="w-full lg:mx-auto lg:max-w-md" key={raid.slug}>
-                <div className="text-2xl font-bold text-accent-400">
+              <div className="w-full max-w-5xl lg:mx-auto" key={raid.slug}>
+                <div className="text-accent-400 text-2xl font-bold">
                   {raid.name}
                 </div>
 
@@ -48,7 +48,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                         />
 
                         <div className="ml-3 flex-1 text-left font-semibold">
-                          {boss.name}
+                          {boss.slug}
                         </div>
 
                         {(['normal', 'heroic', 'mythic'] as const).map(
