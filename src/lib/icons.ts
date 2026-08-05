@@ -1,13 +1,12 @@
 export function getBossIcon(slug: string) {
   const fixed = slug.startsWith('awakened') ? slug.slice(9) : slug
 
-  const icon =
-    bossIcons[fixed] ?? 'achievement_raid_revendrethraid_siredenathrius'
+  const icon = bosses[fixed] ?? 'achievement_raid_revendrethraid_siredenathrius'
 
-  return `https://cdn.raiderio.net/images/wow/icons/large/${icon}.jpg`
+  return `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`
 }
 
-const bossIcons: Record<string, string> = {
+const bosses: Record<string, string> = {
   'assault-of-the-zaqali': 'inv_achievement_raiddragon_zaqaliassault',
   'broodkeeper-diurna': 'achievement_raidprimalist_diurna',
   'broodtwister-ovinax': 'inv_achievement_raidnerubian_swarmmother',

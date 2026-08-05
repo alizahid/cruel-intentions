@@ -1,4 +1,4 @@
-import { type Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { ProgressCard } from '~/components/progress'
 import { RecruitmentCard } from '~/components/recruitment'

@@ -1,6 +1,6 @@
 import { compact } from 'lodash'
 
-import { type Region } from '~/types'
+import type { Region } from '~/types'
 
 export const FACTION = process.env.FACTION ?? 'Horde'
 export const GUILD = process.env.GUILD ?? 'Cruel Intentions'

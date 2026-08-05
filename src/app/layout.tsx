@@ -1,7 +1,7 @@
 import '~/styles/main.css'
 
-import { type ServerRuntime } from 'next'
-import { type ReactNode } from 'react'
+import type { ServerRuntime } from 'next'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { radiance, reaver } from '~/assets/fonts'
@@ -11,7 +11,7 @@ import { RECRUITMENT } from '~/lib/config'
 
 export const runtime: ServerRuntime = 'edge'
 
-type Props = {
+interface Props {
   children: ReactNode
 }
 
@@ -19,7 +19,8 @@ export default function Layout({ children }: Props) {
   return (
     <html
       className={twMerge('scroll-smooth', radiance.variable, reaver.variable)}
-      lang="en">
+      lang="en"
+    >
       <body>
         <div className="flex flex-col text-center">
           {RECRUITMENT.length > 0 && (

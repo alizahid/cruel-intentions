@@ -1,6 +1,6 @@
-import { type RaidDifficulty, type Region } from './index'
+import type { RaidDifficulty, Region } from './index'
 
-export type Raids = {
+export interface Raids {
   raids: Array<{
     encounters: Array<{
       name: string
@@ -13,7 +13,7 @@ export type Raids = {
   }>
 }
 
-export type GuildRoster = {
+export interface GuildRoster {
   guildRoster: {
     raid: {
       encounters: Array<{
@@ -48,7 +48,7 @@ export type GuildRoster = {
   }
 }
 
-export type GuildDetails = {
+export interface GuildDetails {
   guildDetails: {
     raidProgress: Array<{
       encountersDefeated: Record<

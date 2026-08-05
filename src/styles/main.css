@@ -1,6 +1,6 @@
 /* tailwind */
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --font-body: var(--font-radiance), sans-serif;

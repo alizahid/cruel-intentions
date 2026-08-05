@@ -1,8 +1,10 @@
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+export type IconName = keyof typeof icons
+
+interface Props {
   className?: string
-  name: keyof typeof icons
+  name: IconName
   size?: number
 }
 
@@ -10,7 +12,9 @@ export function Icon({ className, name }: Props) {
   return (
     <svg
       className={twMerge('h-6 w-6 fill-current', className)}
-      viewBox="0 0 48 48">
+      viewBox="0 0 48 48"
+    >
+      <title>{name}</title>
       {icons[name]}
     </svg>
   )

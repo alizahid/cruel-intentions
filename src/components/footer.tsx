@@ -18,19 +18,19 @@ export function Footer() {
     {
       label: 'Raider.io',
       link: `https://raider.io/guilds/${region}/${realm}/${encodeURIComponent(
-        GUILD,
+        GUILD
       )}`,
     },
     {
       label: 'WoWProgress',
       link: `https://www.wowprogress.com/guild/${region}/${realm}/${encodeURIComponent(
-        GUILD,
+        GUILD
       )}`,
     },
   ]
 
   return (
-    <footer className="m-12 text-sm text-gray-400">
+    <footer className="m-12 text-gray-400 text-sm">
       <p>
         &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
@@ -38,17 +38,19 @@ export function Footer() {
       <nav className="mt-6 flex justify-center gap-3">
         {links.map(({ label, link }) => (
           <Link
-            className="hover:text-primary-400 text-gray-200"
+            className="text-gray-200 hover:text-primary-400"
             href={link}
-            key={link}>
+            key={link}
+          >
             {label}
           </Link>
         ))}
       </nav>
 
       <Link
-        className="hover:text-primary-400 mt-6 inline-flex items-center justify-center gap-1 text-gray-200"
-        href="https://alizahid.dev">
+        className="mt-6 inline-flex items-center justify-center gap-1 text-gray-200 hover:text-primary-400"
+        href="https://alizahid.dev"
+      >
         Made with <Icon className="h-5 w-5 text-red-600" name="heart" />
       </Link>
     </footer>

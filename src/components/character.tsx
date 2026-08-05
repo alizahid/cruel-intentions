@@ -1,10 +1,12 @@
 import Image from 'next/image'
 
-import { type Member } from '~/types/wow'
+import type { Member } from '~/types/wow'
 
-import { Icon } from './icon'
+import { Icon, type IconName } from './icon'
 
-type Props = { character: Member }
+interface Props {
+  character: Member
+}
 
 export function CharacterCard({ character }: Props) {
   return (
@@ -12,7 +14,7 @@ export function CharacterCard({ character }: Props) {
       <figure className="relative" title={character.spec.role}>
         <Image
           alt={character.name}
-          className="bg-primary-900 rounded-lg"
+          className="rounded-lg bg-primary-900"
           height={116}
           src={character.image}
           unoptimized
@@ -21,7 +23,7 @@ export function CharacterCard({ character }: Props) {
 
         {character.rank === 0 && (
           <Icon
-            className="text-accent-400 absolute -top-2 -left-2"
+            className="absolute -top-2 -left-2 text-accent-400"
             name="star"
           />
         )}
@@ -34,21 +36,13 @@ export function CharacterCard({ character }: Props) {
         )}
 
         <Icon
-          className="text-primary-400 absolute -right-2 -bottom-2"
-          name={
-            character.spec.role === 'tank'
-              ? 'shield'
-              : character.spec.role === 'healer'
-                ? 'hospital'
-                : character.spec.melee
-                  ? 'sword'
-                  : 'arrow'
-          }
+          className="absolute -right-2 -bottom-2 text-primary-400"
+          name={icons[character.spec.role]}
         />
       </figure>
 
       <div className="mt-6">
-        <div className="text-primary-400 text-2xl font-semibold">
+        <div className="font-semibold text-2xl text-primary-400">
           {character.name}
         </div>
 
@@ -63,3 +57,10 @@ export function CharacterCard({ character }: Props) {
     </div>
   )
 }
+
+const icons = {
+  healer: 'hospital',
+  melee: 'sword',
+  ranged: 'arrow',
+  tank: 'shield',
+} as const satisfies Record<string, IconName>

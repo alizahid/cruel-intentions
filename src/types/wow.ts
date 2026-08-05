@@ -1,4 +1,4 @@
-export type Expansion = {
+export interface Expansion {
   id: number
   name: string
   raids: Array<{
@@ -12,7 +12,7 @@ export type Expansion = {
   }>
 }
 
-export type Member = {
+export interface Member {
   class: {
     name: string
     slug: string
@@ -31,7 +31,7 @@ export type Member = {
   }
 }
 
-export type Progress = {
+export interface Progress {
   boss: string
   heroic: boolean
   mythic: boolean
