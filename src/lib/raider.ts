@@ -90,12 +90,6 @@ export const fetchRoster = async (): Promise<Member[]> => {
 export const fetchProgress = async (
   expansions: Expansion[]
 ): Promise<Progress[]> => {
-  console.log(
-    `https://raider.io/api/guilds/details?region=${REGION.toLowerCase()}&realm=${kebabCase(
-      REALM
-    )}&guild=${encodeURIComponent(GUILD)}`
-  )
-
   const response = await fetch(
     `https://raider.io/api/guilds/details?region=${REGION.toLowerCase()}&realm=${kebabCase(
       REALM
