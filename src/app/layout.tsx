@@ -1,6 +1,5 @@
 import '~/styles/main.css'
 
-import type { ServerRuntime } from 'next'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -8,8 +7,6 @@ import { radiance, reaver } from '~/assets/fonts'
 import { Footer } from '~/components/footer'
 import { Header } from '~/components/header'
 import { RECRUITMENT } from '~/lib/config'
-
-export const runtime: ServerRuntime = 'edge'
 
 interface Props {
   children: ReactNode
