@@ -24,6 +24,7 @@ export interface Member {
     slug: string
   }
   rank: number
+  realm: number
   spec: {
     melee: boolean
     name: string

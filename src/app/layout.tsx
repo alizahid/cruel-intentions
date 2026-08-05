@@ -23,12 +23,12 @@ export default function Layout({ children }: Props) {
     >
       <body>
         <div className="flex flex-col text-center">
-          {RECRUITMENT.length > 0 && (
+          {RECRUITMENT.length > 0 ? (
             <div className="bg-primary-400 p-3 pb-2.5 font-semibold text-black">
               We&#39;re actively recruiting the following:{' '}
               {RECRUITMENT.join(', ')}
             </div>
-          )}
+          ) : null}
 
           <Header />
 

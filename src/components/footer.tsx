@@ -38,7 +38,7 @@ export function Footer() {
       <nav className="mt-6 flex justify-center gap-3">
         {links.map(({ label, link }) => (
           <Link
-            className="text-gray-200 hover:text-primary-400"
+            className="text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
             href={link}
             key={link}
           >
@@ -48,7 +48,7 @@ export function Footer() {
       </nav>
 
       <Link
-        className="mt-6 inline-flex items-center justify-center gap-1 text-gray-200 hover:text-primary-400"
+        className="mt-6 inline-flex items-center justify-center gap-1 text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
         href="https://alizahid.dev"
       >
         Made with <Icon className="h-5 w-5 text-red-600" name="heart" />

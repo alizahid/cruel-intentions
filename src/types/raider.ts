@@ -35,6 +35,9 @@ export interface GuildRoster {
           name: string
           slug: string
         }
+        realm: {
+          id: number
+        }
         spec: {
           is_melee: boolean
           name: string

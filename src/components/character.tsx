@@ -24,7 +24,7 @@ export function CharacterCard({ character }: Props) {
         {character.rank === 0 && (
           <Icon
             className="absolute -top-2 -left-2 text-accent-400"
-            name="star"
+            name="crown"
           />
         )}
 
@@ -37,7 +37,11 @@ export function CharacterCard({ character }: Props) {
 
         <Icon
           className="absolute -right-2 -bottom-2 text-primary-400"
-          name={icons[character.spec.role]}
+          name={
+            character.spec.role === 'dps'
+              ? icons[character.spec.melee ? 'melee' : 'ranged']
+              : icons[character.spec.role]
+          }
         />
       </figure>
 
@@ -59,8 +63,8 @@ export function CharacterCard({ character }: Props) {
 }
 
 const icons = {
-  healer: 'hospital',
+  healer: 'first-aid',
   melee: 'sword',
-  ranged: 'arrow',
+  ranged: 'magic',
   tank: 'shield',
 } as const satisfies Record<string, IconName>

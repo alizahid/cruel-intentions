@@ -32,8 +32,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                 <div>
                   {raid.bosses.map((boss) => {
                     const data = progress.find(
-                      (item) =>
-                        item.raid === raid.slug && item.boss === boss.slug
+                      (item) => item.boss === boss.slug
                     )
 
                     return (
@@ -64,7 +63,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                                     ? 'text-emerald-400'
                                     : 'text-rose-400'
                                 }
-                                name="ok"
+                                name={data?.[difficulty] ? 'yes' : 'no'}
                               />
                             </div>
                           )
