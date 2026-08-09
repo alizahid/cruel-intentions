@@ -30,12 +30,12 @@ export function Footer() {
   ]
 
   return (
-    <footer className="m-12 text-gray-400 text-sm">
+    <footer className="m-12 gap-6 text-gray-400 text-sm">
       <p>
         &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
 
-      <nav className="mt-6 flex justify-center gap-3">
+      <nav className="flex justify-center gap-3">
         {links.map(({ label, link }) => (
           <Link
             className="text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
@@ -48,7 +48,7 @@ export function Footer() {
       </nav>
 
       <Link
-        className="mt-6 inline-flex items-center justify-center gap-1 text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
+        className="inline-flex items-center justify-center gap-1 text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
         href="https://alizahid.dev"
       >
         Made with <Icon className="h-5 w-5 text-red-600" name="heart" />
