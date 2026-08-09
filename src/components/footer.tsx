@@ -30,7 +30,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="m-12 gap-6 text-gray-400 text-sm">
+    <footer className="m-12 flex flex-col gap-3 text-gray-400 text-sm">
       <p>
         &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
       </p>
@@ -48,7 +48,7 @@ export function Footer() {
       </nav>
 
       <Link
-        className="inline-flex items-center justify-center gap-1 text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
+        className="inline-flex items-center justify-center gap-1 self-center text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
         href="https://alizahid.dev"
       >
         Made with <Icon className="h-5 w-5 text-red-600" name="heart" />
