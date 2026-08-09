@@ -1,7 +1,6 @@
 import Image from 'next/image'
-
+import { twMerge } from 'tailwind-merge'
 import type { Member } from '~/types/wow'
-
 import { Icon, type IconName } from './icon'
 
 interface Props {
@@ -21,22 +20,27 @@ export function CharacterCard({ character }: Props) {
           width={230}
         />
 
-        {character.rank === 0 && (
+        {character.rank === 0 ? (
           <Icon
-            className="absolute -top-2 -left-2 -rotate-20 text-accent-400"
+            className="absolute -top-2 -left-2 -rotate-20 text-primary-400"
             name="crown"
           />
-        )}
+        ) : null}
 
-        {character.name === 'Wazzuli' && (
+        {character.name === 'Wazzuli' ? (
           <Icon
-            className="absolute -top-2 -left-2 -rotate-20 text-rose-400"
+            className="absolute -top-2 -left-2 -rotate-20 text-rose-600"
             name="heart"
           />
-        )}
+        ) : null}
 
         <Icon
-          className="absolute -right-2 -bottom-2 text-primary-400"
+          className={twMerge(
+            'absolute -right-2 -bottom-2',
+            character.spec.role === 'tank' && 'text-blue-400',
+            character.spec.role === 'healer' && 'text-green-400',
+            character.spec.role === 'dps' && 'text-red-400'
+          )}
           name={
             character.spec.role === 'dps'
               ? icons[character.spec.melee ? 'melee' : 'ranged']
