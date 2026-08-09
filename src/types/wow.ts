@@ -14,18 +14,25 @@ export interface Expansion {
 
 export interface Member {
   class: {
+    id: number
     name: string
     slug: string
   }
+  gender: 'male' | 'female'
   image: string
   name: string
   race: {
+    id: number
     name: string
     slug: string
   }
   rank: number
-  realm: number
+  realm: {
+    id: number
+    name: string
+  }
   spec: {
+    id: number
     melee: boolean
     name: string
     role: string

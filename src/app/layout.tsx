@@ -29,7 +29,7 @@ export default function Layout({ children }: Props) {
 
           <Header />
 
-          <main className="my-24 flex flex-col">{children}</main>
+          {children}
 
           <Footer />
         </div>

@@ -63,21 +63,28 @@ export const fetchRoster = async (): Promise<Member[]> => {
       .filter(({ rank }) => rank <= MAX_RANK)
       .map(({ character, rank }) => ({
         class: {
+          id: character.class.id,
           name: character.class.name,
           slug: character.class.name,
         },
+        gender: character.gender,
         image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail.replace(
           'avatar',
           'inset'
         )}`,
         name: character.name,
         race: {
+          id: character.race.id,
           name: character.race.name,
           slug: character.race.slug,
         },
         rank,
-        realm: character.realm.id,
+        realm: {
+          id: character.realm.id,
+          name: character.realm.name,
+        },
         spec: {
+          id: character.spec.id,
           melee: character.spec.is_melee,
           name: character.spec.name,
           role: character.spec.role,

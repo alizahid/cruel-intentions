@@ -21,18 +21,14 @@ export default async function Page() {
   const raiders = roster.filter(({ name }) => people.raiders.includes(name))
 
   return (
-    <>
+    <main className="my-24 flex flex-col gap-24">
       <RosterCard roster={officers} title="Leadership" />
 
-      <RosterCard className="mt-12" roster={raiders} title="Raiders" />
+      <RosterCard roster={raiders} title="Raiders" />
 
-      <ProgressCard
-        className="mt-24"
-        expansions={expansions}
-        progress={progress}
-      />
+      <ProgressCard expansions={expansions} progress={progress} />
 
-      <RecruitmentCard className="mt-24" />
-    </>
+      <RecruitmentCard />
+    </main>
   )
 }

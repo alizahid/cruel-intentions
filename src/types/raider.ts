@@ -27,18 +27,23 @@ export interface GuildRoster {
     roster: Array<{
       character: {
         class: {
+          id: number
           name: string
           slug: string
         }
         name: string
+        gender: 'male' | 'female'
         race: {
+          id: number
           name: string
           slug: string
         }
         realm: {
           id: number
+          name: string
         }
         spec: {
+          id: number
           is_melee: boolean
           name: string
           role: string

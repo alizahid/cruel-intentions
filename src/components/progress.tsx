@@ -22,7 +22,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
             {expansion.name}
           </h3>
 
-          <div className="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-12 md:grid-cols-2">
             {expansion.raids.map((raid) => (
               <div className="w-full max-w-5xl lg:mx-auto" key={raid.slug}>
                 <div className="font-bold text-2xl text-accent-400">
@@ -39,7 +39,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                       <div className="mt-6 flex items-center" key={boss.slug}>
                         <Image
                           alt={boss.name}
-                          className="rounded-lg bg-amber-600"
+                          className="rounded bg-amber-600"
                           height={32}
                           src={boss.image}
                           unoptimized
@@ -60,8 +60,8 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                               <Icon
                                 className={
                                   data?.[difficulty]
-                                    ? 'text-emerald-400'
-                                    : 'text-rose-400'
+                                    ? 'text-green-400'
+                                    : 'text-red-400'
                                 }
                                 name={data?.[difficulty] ? 'yes' : 'no'}
                               />
