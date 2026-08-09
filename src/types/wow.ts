@@ -3,7 +3,6 @@ export interface Expansion {
   name: string
   raids: Array<{
     bosses: Array<{
-      image: string
       name: string
       slug: string
     }>

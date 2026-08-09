@@ -6,7 +6,6 @@ import type { GuildDetails, GuildRoster, Raids } from '~/types/raider'
 import type { Expansion, Member, Progress } from '~/types/wow'
 
 import { GUILD, MAX_RANK, REALM, REGION } from './config'
-import { getBossIcon } from './icons'
 
 export const fetchExpansions = async (): Promise<Expansion[]> => {
   const expansions = [
@@ -33,7 +32,6 @@ export const fetchExpansions = async (): Promise<Expansion[]> => {
           'desc'
         ).map((raid) => ({
           bosses: raid.encounters.map((boss) => ({
-            image: getBossIcon(boss.slug),
             name: boss.name.startsWith('Awakened')
               ? boss.name.slice(9)
               : boss.name,
