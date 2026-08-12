@@ -1,21 +1,3 @@
-export const people = {
-  officers: ['Ankyla', 'Benangaar', 'Dragndznuts', 'Immortale', 'Jabbayou'],
-  raiders: [
-    'Alethita',
-    'Bestin',
-    'Birdbrain',
-    'Cabooger',
-    'Ckå',
-    'Dreiko',
-    'Ehri',
-    'Hansakluns',
-    'Merllon',
-    'Painsedge',
-    'Safmin',
-    'Wazzuli',
-  ],
-}
-
 export const officers = [
   {
     id: '477335402345267200',

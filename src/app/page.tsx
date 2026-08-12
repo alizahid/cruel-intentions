@@ -3,9 +3,8 @@ import type { Metadata } from 'next'
 import { ProgressCard } from '~/components/progress'
 import { RecruitmentCard } from '~/components/recruitment'
 import { RosterCard } from '~/components/roster'
-import { GUILD, REALM, REGION } from '~/lib/config'
+import { GUILD, OFFICER_RANK, RAIDER_RANK, REALM, REGION } from '~/lib/config'
 import { fetchExpansions, fetchProgress, fetchRoster } from '~/lib/raider'
-import { people } from '~/lib/roster'
 
 export const metadata: Metadata = {
   description: `${GUILD}: World of Warcraft guild on ${REALM}, ${REGION.toUpperCase()}`,
@@ -17,8 +16,8 @@ export default async function Page() {
   const progress = await fetchProgress(expansions)
   const roster = await fetchRoster()
 
-  const officers = roster.filter(({ name }) => people.officers.includes(name))
-  const raiders = roster.filter(({ name }) => people.raiders.includes(name))
+  const officers = roster.filter((member) => OFFICER_RANK.includes(member.rank))
+  const raiders = roster.filter((member) => RAIDER_RANK.includes(member.rank))
 
   return (
     <main className="my-24 flex flex-col gap-24">
