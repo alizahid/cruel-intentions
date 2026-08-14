@@ -66,10 +66,7 @@ export const fetchRoster = async (): Promise<Member[]> => {
           slug: character.class.name,
         },
         gender: character.gender,
-        image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail.replace(
-          'avatar',
-          'inset'
-        )}`,
+        image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail}`,
         name: character.name,
         race: {
           id: character.race.id,
@@ -80,6 +77,7 @@ export const fetchRoster = async (): Promise<Member[]> => {
         realm: {
           id: character.realm.id,
           name: character.realm.name,
+          slug: character.realm.slug,
         },
         spec: {
           id: character.spec.id,

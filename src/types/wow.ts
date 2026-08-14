@@ -29,6 +29,7 @@ export interface Member {
   realm: {
     id: number
     name: string
+    slug: string
   }
   spec: {
     id: number

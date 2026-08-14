@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import type { Member } from '~/types/wow'
 import { Icon, type IconName } from './icon'
@@ -9,15 +10,19 @@ interface Props {
 
 export function CharacterCard({ character }: Props) {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <Link
+      className="flex items-center gap-6"
+      href={`https://raider.io/characters/eu/${character.realm.slug}/${character.name}`}
+      target="_blank"
+    >
       <figure className="relative" title={character.spec.role}>
         <Image
           alt={character.name}
           className="rounded-lg bg-primary-900"
-          height={116}
+          height={84}
           src={character.image}
           unoptimized
-          width={230}
+          width={84}
         />
 
         {character.rank === 0 ? (
@@ -49,12 +54,10 @@ export function CharacterCard({ character }: Props) {
         />
       </figure>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col text-left">
         <div className="font-semibold text-2xl text-primary-400">
           {character.name}
         </div>
-
-        <div className="text-primary-200 text-sm">{character.realm.name}</div>
 
         <div className="mt-2 flex gap-4">
           <Image
@@ -88,7 +91,7 @@ export function CharacterCard({ character }: Props) {
           />
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

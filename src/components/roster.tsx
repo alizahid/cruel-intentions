@@ -13,7 +13,7 @@ interface Props {
 export function RosterCard({ className, roster, title }: Props) {
   return (
     <div
-      className={twMerge('flex scroll-m-12 flex-col gap-12', className)}
+      className={twMerge('mx-6 flex scroll-m-12 flex-col gap-12', className)}
       id={title.toLowerCase()}
     >
       <h2 className="font-semibold text-4xl text-accent-400">{title}</h2>

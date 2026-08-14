@@ -41,6 +41,7 @@ export interface GuildRoster {
         realm: {
           id: number
           name: string
+          slug: string
         }
         spec: {
           id: number
