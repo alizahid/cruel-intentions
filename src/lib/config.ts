@@ -9,5 +9,5 @@ export const REALM = 'Frostmane'
 
 export const RECRUITMENT: string[] = []
 
-export const OFFICER_RANK = [0, 2]
-export const RAIDER_RANK = [4, 5]
+export const OFFICER_RANK = [0, 2, 3]
+export const RAIDER_RANK = [5, 6]
