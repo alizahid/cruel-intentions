@@ -63,10 +63,10 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                                 <Icon
                                   className={
                                     data?.[difficulty]
-                                      ? 'text-green-400'
-                                      : 'text-red-400'
+                                      ? 'text-primary-400'
+                                      : 'text-gray-400'
                                   }
-                                  name={data?.[difficulty] ? 'yes' : 'no'}
+                                  name="skull"
                                 />
                               </div>
                             )

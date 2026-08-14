@@ -19,10 +19,10 @@ export function CharacterCard({ character }: Props) {
         <Image
           alt={character.name}
           className="rounded-lg bg-primary-900"
-          height={84}
+          height={64}
           src={character.image}
           unoptimized
-          width={84}
+          width={64}
         />
 
         {character.rank === 0 ? (
@@ -54,12 +54,12 @@ export function CharacterCard({ character }: Props) {
         />
       </figure>
 
-      <div className="flex flex-col text-left">
+      <div className="flex flex-col gap-2 text-left">
         <div className="font-semibold text-2xl text-primary-400">
           {character.name}
         </div>
 
-        <div className="mt-2 flex gap-4">
+        <div className="flex gap-2">
           <Image
             alt={character.race.name}
             className="size-6 rounded"
@@ -96,10 +96,10 @@ export function CharacterCard({ character }: Props) {
 }
 
 const icons = {
-  healer: 'first-aid',
-  melee: 'sword',
-  ranged: 'magic',
-  tank: 'shield',
+  healer: 'healer',
+  melee: 'melee',
+  ranged: 'ranged',
+  tank: 'tank',
 } as const satisfies Record<string, IconName>
 
 export const classes: Record<number, string> = {
