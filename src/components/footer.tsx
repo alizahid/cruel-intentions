@@ -51,7 +51,8 @@ export function Footer() {
         className="inline-flex items-center justify-center gap-1 self-center text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
         href="https://alizahid.dev"
       >
-        Made with <Icon className="h-5 w-5 text-red-600" name="heart" />
+        Made with <Icon className="h-5 w-5 text-red-600" name="heart" /> by
+        mildpanda
       </Link>
     </footer>
   )
