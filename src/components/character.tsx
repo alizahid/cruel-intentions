@@ -1,8 +1,10 @@
+import { upperFirst } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import type { Member } from '~/types/wow'
 import { Icon, type IconName } from './icon'
+import { Tooltip } from './tooltip'
 
 interface Props {
   character: Member
@@ -15,7 +17,7 @@ export function CharacterCard({ character }: Props) {
       href={`https://raider.io/characters/eu/${character.realm.slug}/${character.name}`}
       target="_blank"
     >
-      <figure className="relative" title={character.spec.role}>
+      <figure className="relative">
         <Image
           alt={character.name}
           className="rounded-lg bg-primary-900"
@@ -39,7 +41,16 @@ export function CharacterCard({ character }: Props) {
           />
         ) : null}
 
-        <div className="absolute -right-2 -bottom-2 rounded-full bg-black p-1">
+        <Tooltip
+          className="absolute -right-2 -bottom-2 rounded-full bg-black p-1"
+          content={upperFirst(
+            character.spec.role === 'dps'
+              ? character.spec.melee
+                ? 'melee'
+                : 'ranged'
+              : character.spec.role
+          )}
+        >
           <Icon
             className={twMerge(
               'size-4',
@@ -53,7 +64,7 @@ export function CharacterCard({ character }: Props) {
                 : icons[character.spec.role]
             }
           />
-        </div>
+        </Tooltip>
       </figure>
 
       <div className="flex flex-col gap-2 text-left">
@@ -62,35 +73,38 @@ export function CharacterCard({ character }: Props) {
         </div>
 
         <div className="flex gap-2">
-          <Image
-            alt={character.race.name}
-            className="size-6 rounded"
-            height={56}
-            src={`https://wow.zamimg.com/images/wow/icons/large/${races[character.race.id][character.gender]}.jpg`}
-            title={character.race.name}
-            unoptimized
-            width={56}
-          />
+          <Tooltip content={character.race.name}>
+            <Image
+              alt={character.race.name}
+              className="size-6 rounded"
+              height={56}
+              src={`https://wow.zamimg.com/images/wow/icons/large/${races[character.race.id][character.gender]}.jpg`}
+              unoptimized
+              width={56}
+            />
+          </Tooltip>
 
-          <Image
-            alt={character.class.name}
-            className="size-6 rounded"
-            height={56}
-            src={`https://wow.zamimg.com/images/wow/icons/large/${classes[character.class.id]}.jpg`}
-            title={character.class.name}
-            unoptimized
-            width={56}
-          />
+          <Tooltip content={character.class.name}>
+            <Image
+              alt={character.class.name}
+              className="size-6 rounded"
+              height={56}
+              src={`https://wow.zamimg.com/images/wow/icons/large/${classes[character.class.id]}.jpg`}
+              unoptimized
+              width={56}
+            />
+          </Tooltip>
 
-          <Image
-            alt={character.spec.name}
-            className="size-6 rounded"
-            height={56}
-            src={`https://wow.zamimg.com/images/wow/icons/large/${specs[character.spec.id]}.jpg`}
-            title={character.spec.name}
-            unoptimized
-            width={56}
-          />
+          <Tooltip content={character.spec.name}>
+            <Image
+              alt={character.spec.name}
+              className="size-6 rounded"
+              height={56}
+              src={`https://wow.zamimg.com/images/wow/icons/large/${specs[character.spec.id]}.jpg`}
+              unoptimized
+              width={56}
+            />
+          </Tooltip>
         </div>
       </div>
     </Link>

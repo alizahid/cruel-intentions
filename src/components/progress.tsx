@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 import type { Expansion, Progress } from '~/types/wow'
 import { Icon } from './icon'
+import { Tooltip } from './tooltip'
 
 interface Props {
   className?: string
@@ -58,9 +59,9 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                         <div className="flex gap-3">
                           {(['normal', 'heroic', 'mythic'] as const).map(
                             (difficulty) => (
-                              <div
+                              <Tooltip
+                                content={upperFirst(difficulty)}
                                 key={difficulty}
-                                title={upperFirst(difficulty)}
                               >
                                 <Icon
                                   className={
@@ -70,7 +71,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                                   }
                                   name={difficulty}
                                 />
-                              </div>
+                              </Tooltip>
                             )
                           )}
                         </div>

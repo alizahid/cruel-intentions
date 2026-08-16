@@ -10,5 +10,12 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "noNestedTernary": "off"
+      }
+    }
   }
 }
