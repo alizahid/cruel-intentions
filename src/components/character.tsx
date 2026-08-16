@@ -39,19 +39,21 @@ export function CharacterCard({ character }: Props) {
           />
         ) : null}
 
-        <Icon
-          className={twMerge(
-            'absolute -right-2 -bottom-2',
-            character.spec.role === 'tank' && 'text-blue-400',
-            character.spec.role === 'healer' && 'text-green-400',
-            character.spec.role === 'dps' && 'text-red-400'
-          )}
-          name={
-            character.spec.role === 'dps'
-              ? icons[character.spec.melee ? 'melee' : 'ranged']
-              : icons[character.spec.role]
-          }
-        />
+        <div className="absolute -right-2 -bottom-2 rounded-full bg-black p-1">
+          <Icon
+            className={twMerge(
+              'size-4',
+              character.spec.role === 'tank' && 'text-blue-400',
+              character.spec.role === 'healer' && 'text-green-400',
+              character.spec.role === 'dps' && 'text-red-400'
+            )}
+            name={
+              character.spec.role === 'dps'
+                ? icons[character.spec.melee ? 'melee' : 'ranged']
+                : icons[character.spec.role]
+            }
+          />
+        </div>
       </figure>
 
       <div className="flex flex-col gap-2 text-left">
