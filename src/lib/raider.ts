@@ -67,7 +67,7 @@ export const fetchRoster = async (): Promise<Member[]> => {
         },
         gender: character.gender,
         image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail}`,
-        name: character.name,
+        name: character.name.split('-').shift(),
         race: {
           id: character.race.id,
           name: character.race.name,
