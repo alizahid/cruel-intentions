@@ -12,11 +12,7 @@ interface Props {
 
 export function CharacterCard({ character }: Props) {
   return (
-    <Link
-      className="group flex items-center gap-4 outline-none ring-primary-400 ring-offset-12 ring-offset-black focus-visible:ring-2"
-      href={`https://raider.io/characters/eu/${character.realm.slug}/${character.name}`}
-      target="_blank"
-    >
+    <div className="flex items-center gap-4 outline-none ring-primary-400 ring-offset-12 ring-offset-black focus-visible:ring-2">
       <figure className="relative">
         <Image
           alt={character.name}
@@ -68,9 +64,13 @@ export function CharacterCard({ character }: Props) {
       </figure>
 
       <div className="flex flex-col gap-2 text-left">
-        <div className="font-semibold text-2xl text-primary-400 transition-colors group-hover:text-white">
+        <Link
+          className="font-semibold text-2xl text-primary-400 transition-colors hover:text-white"
+          href={`https://raider.io/characters/eu/${character.realm.slug}/${character.name}`}
+          target="_blank"
+        >
           {character.name}
-        </div>
+        </Link>
 
         <div className="flex gap-2">
           <Tooltip content={character.race.name}>
@@ -107,7 +107,7 @@ export function CharacterCard({ character }: Props) {
           </Tooltip>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 
