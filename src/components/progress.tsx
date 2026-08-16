@@ -1,8 +1,7 @@
+import { upperFirst } from 'lodash'
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
-
 import type { Expansion, Progress } from '~/types/wow'
-
 import { Icon } from './icon'
 
 interface Props {
@@ -59,14 +58,17 @@ export function ProgressCard({ className, expansions, progress }: Props) {
                         <div className="flex gap-3">
                           {(['normal', 'heroic', 'mythic'] as const).map(
                             (difficulty) => (
-                              <div key={difficulty} title={difficulty}>
+                              <div
+                                key={difficulty}
+                                title={upperFirst(difficulty)}
+                              >
                                 <Icon
                                   className={
                                     data?.[difficulty]
-                                      ? 'text-green-400'
-                                      : 'text-gray-400'
+                                      ? 'text-primary-400'
+                                      : 'text-gray-600'
                                   }
-                                  name="skull"
+                                  name={difficulty}
                                 />
                               </div>
                             )
