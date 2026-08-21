@@ -10,7 +10,10 @@ interface Props {
 
 export function RecruitmentCard({ className }: Props) {
   return (
-    <div className={twMerge('mx-6 scroll-m-12', className)} id="recruitment">
+    <section
+      className={twMerge('mx-6 scroll-m-12', className)}
+      id="recruitment"
+    >
       <h2 className="font-semibold text-4xl text-accent-400">
         Apply to join {GUILD}
       </h2>
@@ -56,6 +59,6 @@ export function RecruitmentCard({ className }: Props) {
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

@@ -12,7 +12,7 @@ interface Props {
 
 export function RosterCard({ className, roster, title }: Props) {
   return (
-    <div
+    <section
       className={twMerge('mx-6 flex scroll-m-12 flex-col gap-12', className)}
       id={title.toLowerCase()}
     >
@@ -26,6 +26,6 @@ export function RosterCard({ className, roster, title }: Props) {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }

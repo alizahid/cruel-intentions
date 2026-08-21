@@ -13,7 +13,7 @@ interface Props {
 
 export function ProgressCard({ className, expansions, progress }: Props) {
   return (
-    <div
+    <section
       className={twMerge('mx-6 flex scroll-m-12 flex-col gap-12', className)}
       id="progress"
     >
@@ -84,7 +84,7 @@ export function ProgressCard({ className, expansions, progress }: Props) {
           </div>
         </div>
       ))}
-    </div>
+    </section>
   )
 }
 
