@@ -1,8 +1,6 @@
+import { Flex, Link, Section, Text } from '@radix-ui/themes'
 import kebabCase from 'lodash/kebabCase'
-import Link from 'next/link'
-
 import { GUILD, REALM, REGION } from '~/lib/config'
-
 import { Icon } from './icon'
 
 export function Footer() {
@@ -30,30 +28,27 @@ export function Footer() {
   ]
 
   return (
-    <footer className="m-12 flex flex-col gap-3 text-gray-400 text-sm">
-      <p>
-        &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
-      </p>
+    <Section size="3">
+      <Flex direction="column" gap="4">
+        <Text align="center" color="gray" size="2">
+          &#169; {new Date().getFullYear()} {GUILD}. All rights reserved.
+        </Text>
 
-      <nav className="flex justify-center gap-3">
-        {links.map(({ label, link }) => (
-          <Link
-            className="text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
-            href={link}
-            key={link}
-          >
-            {label}
+        <Flex gap="3" justify="center">
+          {links.map(({ label, link }) => (
+            <Link href={link} key={link} size="2" underline="none">
+              {label}
+            </Link>
+          ))}
+        </Flex>
+
+        <Flex alignSelf="center" asChild gap="1">
+          <Link href="https://alizahid.dev" size="2" underline="none">
+            Made with <Icon className="h-5 w-5 text-red-600" name="heart" /> by
+            mildpanda
           </Link>
-        ))}
-      </nav>
-
-      <Link
-        className="inline-flex items-center justify-center gap-1 self-center text-gray-200 leading-tight outline-none hover:text-primary-400 focus-visible:bg-primary-950"
-        href="https://alizahid.dev"
-      >
-        Made with <Icon className="h-5 w-5 text-red-600" name="heart" /> by
-        mildpanda
-      </Link>
-    </footer>
+        </Flex>
+      </Flex>
+    </Section>
   )
 }

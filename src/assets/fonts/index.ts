@@ -8,7 +8,7 @@ export const radiance = localFont({
     },
     {
       path: './radiance-semibold.woff2',
-      weight: '600',
+      weight: '500',
     },
     {
       path: './radiance-bold.woff2',
@@ -26,7 +26,7 @@ export const reaver = localFont({
     },
     {
       path: './reaver-semibold.woff2',
-      weight: '600',
+      weight: '500',
     },
     {
       path: './reaver-bold.woff2',

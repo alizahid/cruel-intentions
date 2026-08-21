@@ -1,10 +1,9 @@
+import { Flex, Link, Tooltip } from '@radix-ui/themes'
 import { upperFirst } from 'lodash'
 import Image from 'next/image'
-import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import type { Member } from '~/types/wow'
 import { Icon, type IconName } from './icon'
-import { Tooltip } from './tooltip'
 
 interface Props {
   character: Member
@@ -12,7 +11,7 @@ interface Props {
 
 export function CharacterCard({ character }: Props) {
   return (
-    <div className="flex items-center gap-4 outline-none ring-primary-400 ring-offset-12 ring-offset-black focus-visible:ring-2">
+    <Flex align="center" gap="4">
       <figure className="relative">
         <Image
           alt={character.name}
@@ -38,7 +37,6 @@ export function CharacterCard({ character }: Props) {
         ) : null}
 
         <Tooltip
-          className="absolute -right-2 -bottom-2 rounded-full bg-black p-1"
           content={upperFirst(
             character.spec.role === 'dps'
               ? character.spec.melee
@@ -47,36 +45,46 @@ export function CharacterCard({ character }: Props) {
               : character.spec.role
           )}
         >
-          <Icon
-            className={twMerge(
-              'size-4',
-              character.spec.role === 'tank' && 'text-blue-400',
-              character.spec.role === 'healer' && 'text-green-400',
-              character.spec.role === 'dps' && 'text-red-400'
-            )}
-            name={
-              character.spec.role === 'dps'
-                ? icons[character.spec.melee ? 'melee' : 'ranged']
-                : icons[character.spec.role]
-            }
-          />
+          <Flex
+            bottom="-8px"
+            className="rounded-full bg-black"
+            p="1"
+            position="absolute"
+            right="-8px"
+          >
+            <Icon
+              className={twMerge(
+                'size-4',
+                character.spec.role === 'tank' && 'text-(--blue-9)',
+                character.spec.role === 'healer' && 'text-(--green-9)',
+                character.spec.role === 'dps' && 'text-(--red-9)'
+              )}
+              name={
+                character.spec.role === 'dps'
+                  ? icons[character.spec.melee ? 'melee' : 'ranged']
+                  : icons[character.spec.role]
+              }
+            />
+          </Flex>
         </Tooltip>
       </figure>
 
-      <div className="flex flex-col gap-2 text-left">
+      <Flex align="start" direction="column" gap="1" justify="between">
         <Link
-          className="font-semibold text-2xl text-primary-400 transition-colors hover:text-white"
           href={`https://raider.io/characters/eu/${character.realm.slug}/${character.name}`}
+          size="6"
           target="_blank"
+          underline="none"
+          weight="medium"
         >
           {character.name}
         </Link>
 
-        <div className="flex gap-2">
+        <Flex gap="3">
           <Tooltip content={character.race.name}>
             <Image
               alt={character.race.name}
-              className="size-6 rounded"
+              className="size-(--space-5) rounded"
               height={56}
               src={`https://wow.zamimg.com/images/wow/icons/large/${races[character.race.id][character.gender]}.jpg`}
               unoptimized
@@ -87,7 +95,7 @@ export function CharacterCard({ character }: Props) {
           <Tooltip content={character.class.name}>
             <Image
               alt={character.class.name}
-              className="size-6 rounded"
+              className="size-(--space-5) rounded"
               height={56}
               src={`https://wow.zamimg.com/images/wow/icons/large/${classes[character.class.id]}.jpg`}
               unoptimized
@@ -98,16 +106,16 @@ export function CharacterCard({ character }: Props) {
           <Tooltip content={character.spec.name}>
             <Image
               alt={character.spec.name}
-              className="size-6 rounded"
+              className="size-(--space-5) rounded"
               height={56}
               src={`https://wow.zamimg.com/images/wow/icons/large/${specs[character.spec.id]}.jpg`}
               unoptimized
               width={56}
             />
           </Tooltip>
-        </div>
-      </div>
-    </div>
+        </Flex>
+      </Flex>
+    </Flex>
   )
 }
 

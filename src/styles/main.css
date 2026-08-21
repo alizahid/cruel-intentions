@@ -43,22 +43,9 @@
   --color-accent-950: var(--color-teal-950);
 }
 
-/* global */
+/* radix */
 
-::selection {
-  @apply bg-primary-600/50;
-}
-
-body {
-  @apply font-body cursor-default bg-black text-white;
-}
-
-a {
-  @apply transition-colors;
-}
-
-h1,
-h2,
-h3 {
-  @apply font-display;
+.radix-themes {
+  --default-font-family: var(--font-radiance);
+  --heading-font-family: var(--font-reaver);
 }

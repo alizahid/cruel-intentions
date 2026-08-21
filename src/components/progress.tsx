@@ -1,90 +1,91 @@
+import { Flex, Grid, Heading, Section, Text, Tooltip } from '@radix-ui/themes'
 import { upperFirst } from 'lodash'
 import Image from 'next/image'
-import { twMerge } from 'tailwind-merge'
 import type { Expansion, Progress } from '~/types/wow'
 import { Icon } from './icon'
-import { Tooltip } from './tooltip'
 
 interface Props {
-  className?: string
   expansions: Expansion[]
   progress: Progress[]
 }
 
-export function ProgressCard({ className, expansions, progress }: Props) {
+export function ProgressCard({ expansions, progress }: Props) {
   return (
-    <section
-      className={twMerge('mx-6 flex scroll-m-12 flex-col gap-12', className)}
-      id="progress"
-    >
-      <h2 className="font-semibold text-4xl text-accent-400">Progression</h2>
+    <Section id="progress" size="3">
+      <Flex direction="column" gap="9">
+        <Heading align="center" as="h2" color="mint" size="8">
+          Progression
+        </Heading>
 
-      {expansions.map((expansion) => (
-        <div className="flex flex-col gap-12" key={expansion.id}>
-          <h3 className="font-semibold text-3xl text-primary-400">
-            {expansion.name}
-          </h3>
+        {expansions.map((expansion) => (
+          <Flex direction="column" gap="9" key={expansion.id}>
+            <Heading align="center" as="h3" color="amber" size="7">
+              {expansion.name}
+            </Heading>
 
-          <div className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-2">
-            {expansion.raids.map((raid) => (
-              <div
-                className="flex w-full max-w-5xl flex-col gap-6 lg:mx-auto"
-                key={raid.slug}
-              >
-                <div className="font-bold text-2xl text-accent-400">
-                  {raid.name}
-                </div>
+            <Grid
+              columns={{
+                md: '2',
+              }}
+              gap="9"
+            >
+              {expansion.raids.map((raid) => (
+                <Flex direction="column" gap="6" key={raid.slug}>
+                  <Heading align="center" as="h4" color="mint">
+                    {raid.name}
+                  </Heading>
 
-                <div className="flex flex-col gap-3">
-                  {raid.bosses.map((boss) => {
-                    const data = progress.find(
-                      (item) => item.boss === boss.slug
-                    )
+                  <Flex direction="column" gap="3">
+                    {raid.bosses.map((boss) => {
+                      const data = progress.find(
+                        (item) => item.boss === boss.slug
+                      )
 
-                    return (
-                      <div className="flex items-center gap-3" key={boss.slug}>
-                        <Image
-                          alt={boss.name}
-                          className="rounded bg-amber-600"
-                          height={32}
-                          src={`https://wow.zamimg.com/images/wow/icons/large/${icons[boss.slug] ?? 'achievement_raid_revendrethraid_siredenathrius'}.jpg`}
-                          unoptimized
-                          width={32}
-                        />
+                      return (
+                        <Flex align="center" gap="3" key={boss.slug}>
+                          <Image
+                            alt={boss.name}
+                            className="rounded bg-(--accent-3)"
+                            height={32}
+                            src={`https://wow.zamimg.com/images/wow/icons/large/${icons[boss.slug] ?? 'achievement_raid_revendrethraid_siredenathrius'}.jpg`}
+                            unoptimized
+                            width={32}
+                          />
 
-                        <div className="flex-1 text-left font-semibold">
-                          {boss.name}
-                        </div>
+                          <Text className="flex-1" weight="medium">
+                            {boss.name}
+                          </Text>
 
-                        <div className="flex gap-3">
-                          {(['normal', 'heroic', 'mythic'] as const).map(
-                            (difficulty) => (
-                              <Tooltip
-                                content={upperFirst(difficulty)}
-                                key={difficulty}
-                              >
-                                <Icon
-                                  className={
-                                    data?.[difficulty]
-                                      ? 'text-primary-400'
-                                      : 'text-gray-600'
-                                  }
-                                  name={difficulty}
-                                />
-                              </Tooltip>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </section>
+                          <Flex gap="3">
+                            {(['normal', 'heroic', 'mythic'] as const).map(
+                              (difficulty) => (
+                                <Tooltip
+                                  content={upperFirst(difficulty)}
+                                  key={difficulty}
+                                >
+                                  <Icon
+                                    className={
+                                      data?.[difficulty]
+                                        ? 'text-primary-400'
+                                        : 'text-gray-600'
+                                    }
+                                    name={difficulty}
+                                  />
+                                </Tooltip>
+                              )
+                            )}
+                          </Flex>
+                        </Flex>
+                      )
+                    })}
+                  </Flex>
+                </Flex>
+              ))}
+            </Grid>
+          </Flex>
+        ))}
+      </Flex>
+    </Section>
   )
 }
 

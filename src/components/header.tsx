@@ -1,27 +1,36 @@
+import { Flex, Heading, Link, Section, Text } from '@radix-ui/themes'
 import { FACTION, GUILD, REALM, REGION } from '~/lib/config'
-
-import { Link } from './link'
 
 export function Header() {
   return (
-    <header className="flex flex-col items-center gap-24">
-      <nav className="flex justify-center">
-        <Link href="#raiders">Raiders</Link>
-        <Link href="#progress">Progress</Link>
-        <Link href="#recruitment">Apply</Link>
-      </nav>
+    <Section size="3">
+      <Flex direction="column" gap="9">
+        <Flex asChild gap="3" justify="center">
+          <nav>
+            <Link highContrast href="#raiders" underline="none">
+              Raiders
+            </Link>
 
-      <div className="flex flex-col items-center gap-4">
-        <div className="flex flex-col items-center text-lg lg:flex-row lg:justify-center">
-          <span className="font-semibold text-accent-400">{REGION}</span>
-          <span className="mx-3 hidden lg:block">&#215;</span>
-          <span className="font-semibold text-accent-400">{REALM}</span>
-          <span className="mx-3 hidden lg:block">&#215;</span>
-          <span className="font-semibold text-accent-400">{FACTION}</span>
-        </div>
+            <Link highContrast href="#progress" underline="none">
+              Progress
+            </Link>
 
-        <h1 className="font-bold text-6xl text-primary-400">{GUILD}</h1>
-      </div>
-    </header>
+            <Link highContrast href="#recruitment" underline="none">
+              Apply
+            </Link>
+          </nav>
+        </Flex>
+
+        <Flex direction="column" gap="4">
+          <Text align="center" color="gray" weight="medium">
+            {REGION} &#215; {REALM} &#215; {FACTION}
+          </Text>
+
+          <Heading align="center" color="amber" size="9">
+            {GUILD}
+          </Heading>
+        </Flex>
+      </Flex>
+    </Section>
   )
 }

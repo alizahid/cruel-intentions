@@ -1,31 +1,35 @@
-import { twMerge } from 'tailwind-merge'
-
+import { Flex, Grid, Heading, Section } from '@radix-ui/themes'
 import type { Member } from '~/types/wow'
-
 import { CharacterCard } from './character'
 
 interface Props {
-  className?: string
   roster: Member[]
   title: string
 }
 
-export function RosterCard({ className, roster, title }: Props) {
+export function RosterCard({ roster, title }: Props) {
   return (
-    <section
-      className={twMerge('mx-6 flex scroll-m-12 flex-col gap-12', className)}
-      id={title.toLowerCase()}
-    >
-      <h2 className="font-semibold text-4xl text-accent-400">{title}</h2>
+    <Section id={title.toLowerCase()} size="3">
+      <Flex direction="column" gap="9">
+        <Heading align="center" as="h2" color="mint" size="8">
+          {title}
+        </Heading>
 
-      <div className="mx-auto grid w-full max-w-5xl items-center gap-12 md:grid-cols-2 lg:grid-cols-3">
-        {roster.map((member) => (
-          <CharacterCard
-            character={member}
-            key={`${member.realm.id}-${member.name}`}
-          />
-        ))}
-      </div>
-    </section>
+        <Grid
+          columns={{
+            md: '3',
+            sm: '2',
+          }}
+          gap="9"
+        >
+          {roster.map((member) => (
+            <CharacterCard
+              character={member}
+              key={`${member.realm.id}-${member.name}`}
+            />
+          ))}
+        </Grid>
+      </Flex>
+    </Section>
   )
 }
