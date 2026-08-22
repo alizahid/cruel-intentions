@@ -4,24 +4,12 @@ import { Button, Callout, Flex, Grid, Heading, Select } from '@radix-ui/themes'
 import { parseAsStringEnum, useQueryState } from 'nuqs'
 import { useCallback, useState } from 'react'
 import { Copyable } from '~/components/copyable'
+import { type AddonData, getTalentLoadoutEx } from '~/lib/addon'
 
 export function Content() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string>()
-  const [data, setData] =
-    useState<
-      {
-        data: {
-          code: string
-          icon: string
-          id: string
-          name: string
-        }[]
-        icon: string
-        id: string
-        name: string
-      }[]
-    >()
+  const [data, setData] = useState<AddonData>()
 
   const [$class, setClass] = useQueryState(
     'class',
@@ -30,7 +18,9 @@ export function Content() {
   const [spec, setSpec] = useQueryState(
     'spec',
     parseAsStringEnum(
-      classes.find((item) => item.id === $class)?.specs.map((item) => item.id)
+      classes
+        .find((item) => item.id === $class)
+        ?.specs.map((item) => item.id) ?? []
     )
   )
   const [difficulty, setDifficulty] = useQueryState(
@@ -68,7 +58,7 @@ export function Content() {
   }, [$class, spec, difficulty, level])
 
   const specs = $class
-    ? classes.find((item) => item.id === $class).specs
+    ? classes.find((item) => item.id === $class)?.specs
     : undefined
 
   return (
@@ -152,24 +142,31 @@ export function Content() {
       </Flex>
 
       {data ? (
-        <Grid
-          columns={{
-            sm: '2',
-          }}
-          gap="6"
-        >
-          {data.map((group) => (
-            <Flex direction="column" gap="3" key={group.id}>
-              <Heading as="h2" size="3">
-                {group.name}
-              </Heading>
+        <Flex direction="column" gap="6">
+          <Grid
+            columns={{
+              sm: '2',
+            }}
+            gap="6"
+          >
+            {data.map((group) => (
+              <Flex direction="column" gap="3" key={group.id}>
+                <Heading as="h2" size="3">
+                  {group.name}
+                </Heading>
 
-              {group.data.map((item) => (
-                <Copyable key={item.id} label={item.name} value={item.code} />
-              ))}
-            </Flex>
-          ))}
-        </Grid>
+                {group.data.map((item) => (
+                  <Copyable key={item.id} label={item.name} value={item.code} />
+                ))}
+              </Flex>
+            ))}
+          </Grid>
+
+          <Copyable
+            label="Copy all for TalentLoadoutEx"
+            value={getTalentLoadoutEx(data)}
+          />
+        </Flex>
       ) : null}
     </Flex>
   )
