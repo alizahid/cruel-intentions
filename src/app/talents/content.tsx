@@ -162,10 +162,16 @@ export function Content() {
             ))}
           </Grid>
 
-          <Copyable
-            label="Copy all for TalentLoadoutEx"
-            value={getTalentLoadoutEx(data)}
-          />
+          <Flex direction="column" gap="3">
+            <Heading as="h2" size="3">
+              Addons
+            </Heading>
+
+            <Copyable
+              label="TalentLoadoutEx"
+              value={getTalentLoadoutEx(data)}
+            />
+          </Flex>
         </Flex>
       ) : null}
     </Flex>
