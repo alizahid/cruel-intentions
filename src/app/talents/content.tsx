@@ -30,24 +30,16 @@ export function Content() {
   const [spec, setSpec] = useQueryState(
     'spec',
     parseAsStringEnum(
-      classes.find((item) => item.id === $class).specs.map((item) => item.id)
+      classes.find((item) => item.id === $class)?.specs.map((item) => item.id)
     )
   )
   const [difficulty, setDifficulty] = useQueryState(
     'difficulty',
-    parseAsStringEnum(['normal', 'heroic', 'mythic'])
+    parseAsStringEnum(['normal', 'heroic', 'mythic'] as string[])
   )
   const [level, setLevel] = useQueryState(
     'level',
-    parseAsStringEnum(['10', 'high-keys'])
-  )
-
-  const onChangeClass = useCallback(
-    (next: string) => {
-      setClass(next)
-      setSpec(undefined)
-    },
-    [setClass, setSpec]
+    parseAsStringEnum(['10', 'high-keys'] as string[])
   )
 
   const onSubmit = useCallback(async () => {
@@ -80,7 +72,7 @@ export function Content() {
     : undefined
 
   return (
-    <Flex direction="column" gap="6" p="4">
+    <Flex direction="column" gap="6" p="6">
       <Heading color="amber">Talents</Heading>
 
       {error ? (
@@ -98,7 +90,6 @@ export function Content() {
         gap="4"
       >
         <Flex gap="4">
-          {/* @ts-expect-error */}
           <Select.Root onValueChange={setDifficulty} value={difficulty ?? ''}>
             <Select.Trigger placeholder="Raid difficulty" />
 
@@ -109,7 +100,6 @@ export function Content() {
             </Select.Content>
           </Select.Root>
 
-          {/* @ts-expect-error */}
           <Select.Root onValueChange={setLevel} value={level ?? ''}>
             <Select.Trigger placeholder="Keystone level" />
 
@@ -121,7 +111,13 @@ export function Content() {
         </Flex>
 
         <Flex gap="4">
-          <Select.Root onValueChange={onChangeClass} value={$class ?? ''}>
+          <Select.Root
+            onValueChange={(next) => {
+              setClass(next)
+              setSpec(null)
+            }}
+            value={$class ?? ''}
+          >
             <Select.Trigger placeholder="Class" />
 
             <Select.Content>
@@ -149,7 +145,7 @@ export function Content() {
         </Flex>
 
         <Button
-          disabled={loading || !$class || !spec}
+          disabled={loading || !difficulty || !level || !$class || !spec}
           loading={loading}
           onClick={onSubmit}
         >

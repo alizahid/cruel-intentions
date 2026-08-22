@@ -13,6 +13,9 @@
   },
   "linter": {
     "rules": {
+      "performance": {
+        "noJsxPropsBind": "off"
+      },
       "style": {
         "noNestedTernary": "off"
       }

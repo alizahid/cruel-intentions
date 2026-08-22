@@ -62,7 +62,7 @@ const groups = [
   {
     icon: '8039569/5607/5580/3508',
     id: 'raid',
-    name: 'Raids',
+    name: 'Bosses',
   },
   {
     icon: '6025441/5607/5580/3508',
