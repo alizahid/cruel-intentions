@@ -129,19 +129,17 @@ export function Content() {
             </Select.Content>
           </Select.Root>
 
-          {specs ? (
-            <Select.Root onValueChange={setSpec} value={spec ?? ''}>
-              <Select.Trigger placeholder="Specialization" />
+          <Select.Root onValueChange={setSpec} value={spec ?? ''}>
+            <Select.Trigger placeholder="Specialization" />
 
-              <Select.Content>
-                {specs.map((item) => (
-                  <Select.Item key={item.id} value={item.id}>
-                    {item.name}
-                  </Select.Item>
-                ))}
-              </Select.Content>
-            </Select.Root>
-          ) : null}
+            <Select.Content>
+              {specs?.map((item) => (
+                <Select.Item key={item.id} value={item.id}>
+                  {item.name}
+                </Select.Item>
+              ))}
+            </Select.Content>
+          </Select.Root>
         </Flex>
 
         <Button
