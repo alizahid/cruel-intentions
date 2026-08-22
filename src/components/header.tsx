@@ -22,8 +22,9 @@ export function Header() {
         </Flex>
 
         <Flex direction="column" gap="4">
-          <Text align="center" color="gray" weight="medium">
-            {REGION} &#215; {REALM} &#215; {FACTION}
+          <Text align="center" weight="medium">
+            {REGION} <Text color="gray">&#215;</Text> {REALM}{' '}
+            <Text color="gray">&#215;</Text> {FACTION}
           </Text>
 
           <Heading align="center" color="amber" size="9">
