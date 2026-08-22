@@ -9,7 +9,9 @@
   },
   "scripts": {
     "build": "next build",
+    "check": "ultracite check",
     "dev": "next dev",
+    "fix": "ultracite fix",
     "lint": "ultracite fix",
     "prepare": "husky",
     "start": "next start",
@@ -33,7 +35,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.10",
+    "@biomejs/biome": "2.5.9",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/lodash": "^4.17.25",
     "@types/node": "26.2.0",

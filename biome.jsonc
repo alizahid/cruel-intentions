@@ -17,7 +17,11 @@
         "noJsxPropsBind": "off"
       },
       "style": {
-        "noNestedTernary": "off"
+        "noNestedTernary": "off",
+        "noNonNullAssertion": "off"
+      },
+      "suspicious": {
+        "noUnnecessaryConditions": "off"
       }
     }
   }

@@ -67,7 +67,7 @@ export const fetchRoster = async (): Promise<Member[]> => {
         },
         gender: character.gender,
         image: `https://render.worldofwarcraft.com/eu/character/${character.thumbnail}`,
-        name: character.name.split('-').shift(),
+        name: character.name.split('-').shift()!,
         race: {
           id: character.race.id,
           name: character.race.name,
@@ -134,32 +134,33 @@ function splitRaids(expansions: Expansion[]): Expansion[] {
   const midnight = expansions.findIndex((raid) => raid.id === 11)
 
   if (midnight >= 0) {
-    const midnightTier1 = expansions[midnight].raids.findIndex(
+    const midnightTier1 = expansions[midnight]?.raids.findIndex(
       (raid) => raid.slug === 'tier-mn-1'
     )
 
-    if (midnightTier1 >= 0) {
+    if (midnightTier1) {
       return create(expansions, (draft) => {
-        const [{ bosses }] = draft[midnight].raids.splice(midnightTier1, 1)
+        const bosses =
+          draft[midnight]?.raids.splice(midnightTier1, 1)?.[0]?.bosses ?? []
 
-        draft[midnight].raids.push({
-          bosses: bosses.filter((boss) =>
+        draft[midnight]?.raids.push({
+          bosses: bosses?.filter((boss) =>
             ['chimaerus-the-undreamt-god'].includes(boss.slug)
           ),
           name: 'The Dreamrift',
           slug: 'the-dreamrift',
         })
 
-        draft[midnight].raids.push({
-          bosses: bosses.filter((boss) =>
+        draft[midnight]?.raids.push({
+          bosses: bosses?.filter((boss) =>
             ['beloren-child-of-alar', 'midnight-falls'].includes(boss.slug)
           ),
           name: "March on Quel'Danas",
           slug: 'march-on-quel-danas',
         })
 
-        draft[midnight].raids.push({
-          bosses: bosses.filter((boss) =>
+        draft[midnight]?.raids.push({
+          bosses: bosses?.filter((boss) =>
             [
               'imperator-averzian',
               'vorasius',
@@ -184,7 +185,13 @@ function mergeProgress(data: GuildDetails['guildDetails']['raidProgress']) {
 
   if (midnight >= 0) {
     return create(data, (draft) => {
-      const [{ encountersDefeated }] = draft.splice(midnight, 1)
+      const encountersDefeated = draft.splice(midnight, 1)?.[0]
+        ?.encountersDefeated ?? {
+        heroic: [],
+        lfr: [],
+        mythic: [],
+        normal: [],
+      }
 
       draft.push({
         encountersDefeated,

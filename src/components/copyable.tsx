@@ -17,7 +17,9 @@ export function Copyable({ label, value }: Props) {
       return
     }
 
-    clearTimeout(timer.current)
+    if (timer.current) {
+      clearTimeout(timer.current)
+    }
 
     await navigator.clipboard.writeText(value)
 

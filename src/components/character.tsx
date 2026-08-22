@@ -86,7 +86,7 @@ export function CharacterCard({ character }: Props) {
               alt={character.race.name}
               className="size-(--space-5) rounded"
               height={56}
-              src={`https://wow.zamimg.com/images/wow/icons/large/${races[character.race.id][character.gender]}.jpg`}
+              src={`https://wow.zamimg.com/images/wow/icons/large/${races[character.race.id]?.[character.gender]}.jpg`}
               unoptimized
               width={56}
             />
