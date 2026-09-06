@@ -1,7 +1,8 @@
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export function GET() {
   revalidatePath('/')
 
-  return new Response('Done')
+  redirect('/')
 }
